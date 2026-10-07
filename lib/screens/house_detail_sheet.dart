@@ -374,6 +374,7 @@ class HouseDetailSheet extends StatelessWidget {
                   current: GameState.instance.eclipsePoints,
                   required: next.baseCostEP,
                   icon: CupertinoIcons.sparkles,
+                  color: CupertinoColors.white,
                 ),
               ),
               const SizedBox(width: 10),
@@ -383,6 +384,7 @@ class HouseDetailSheet extends StatelessWidget {
                   current: GameState.instance.callPoints,
                   required: next.requiredCP,
                   icon: CupertinoIcons.phone_fill,
+                  color: const Color(0xFFD4D4D8),
                 ),
               ),
             ],
@@ -451,12 +453,14 @@ class _RequirementBadge extends StatelessWidget {
     required this.current,
     required this.required,
     required this.icon,
+    this.color = CupertinoColors.white,
   });
 
   final String label;
   final int current;
   final int required;
   final IconData icon;
+  final Color color;
 
   @override
   Widget build(BuildContext context) {
@@ -467,7 +471,7 @@ class _RequirementBadge extends StatelessWidget {
         color: const Color(0xFF242426),
         borderRadius: BorderRadius.circular(12),
         border: Border.all(
-          color: isMet ? CupertinoColors.white.withValues(alpha: 0.25) : const Color(0x33FFFFFF),
+          color: isMet ? color.withValues(alpha: 0.25) : const Color(0x33FFFFFF),
         ),
       ),
       child: Column(
@@ -475,7 +479,7 @@ class _RequirementBadge extends StatelessWidget {
         children: [
           Row(
             children: [
-              Icon(icon, size: 14, color: CupertinoColors.white),
+              Icon(icon, size: 14, color: color),
               const SizedBox(width: 4),
               Expanded(
                 child: Text(
@@ -491,7 +495,7 @@ class _RequirementBadge extends StatelessWidget {
             style: TextStyle(
               fontSize: 13,
               fontWeight: FontWeight.bold,
-              color: isMet ? CupertinoColors.white : const Color(0xFF71717A),
+              color: isMet ? color : const Color(0xFF71717A),
             ),
           ),
         ],
