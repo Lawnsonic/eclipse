@@ -21,8 +21,8 @@ class RolodexApp extends StatelessWidget {
       theme: CupertinoThemeData(
         brightness: Brightness.dark,
         scaffoldBackgroundColor: EclipseTheme.background,
-        barBackgroundColor: Color(0xFF0F172A),
-        primaryColor: Color(0xFFF59E0B),
+        barBackgroundColor: EclipseTheme.surface,
+        primaryColor: CupertinoColors.white,
       ),
       home: AdaptiveLayout(),
     );

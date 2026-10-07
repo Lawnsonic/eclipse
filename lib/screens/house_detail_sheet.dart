@@ -44,7 +44,7 @@ class HouseDetailSheet extends StatelessWidget {
         return Container(
           height: MediaQuery.of(context).size.height * 0.88,
           decoration: const BoxDecoration(
-            color: CupertinoColors.systemBackground,
+            color: Color(0xFF141416),
             borderRadius: BorderRadius.vertical(top: Radius.circular(24)),
           ),
           child: Column(
@@ -54,7 +54,7 @@ class HouseDetailSheet extends StatelessWidget {
                 width: 44,
                 height: 5,
                 decoration: BoxDecoration(
-                  color: CupertinoColors.systemGrey4,
+                  color: const Color(0xFF27272A),
                   borderRadius: BorderRadius.circular(2.5),
                 ),
               ),
@@ -71,6 +71,7 @@ class HouseDetailSheet extends StatelessWidget {
                             style: const TextStyle(
                               fontSize: 20,
                               fontWeight: FontWeight.bold,
+                              color: CupertinoColors.white,
                             ),
                           ),
                           const SizedBox(height: 2),
@@ -79,14 +80,14 @@ class HouseDetailSheet extends StatelessWidget {
                               const Icon(
                                 CupertinoIcons.location_solid,
                                 size: 12,
-                                color: CupertinoColors.systemGrey,
+                                color: Color(0xFFA1A1A6),
                               ),
                               const SizedBox(width: 4),
                               Text(
                                 location,
                                 style: const TextStyle(
                                   fontSize: 13,
-                                  color: CupertinoColors.systemGrey,
+                                  color: Color(0xFFA1A1A6),
                                 ),
                               ),
                             ],
@@ -96,7 +97,7 @@ class HouseDetailSheet extends StatelessWidget {
                     ),
                     CupertinoButton(
                       padding: EdgeInsets.zero,
-                      child: const Icon(CupertinoIcons.clear_circled_solid, color: CupertinoColors.systemGrey),
+                      child: const Icon(CupertinoIcons.clear_circled_solid, color: Color(0xFF71717A)),
                       onPressed: () => Navigator.of(context).pop(),
                     ),
                   ],
@@ -117,7 +118,7 @@ class HouseDetailSheet extends StatelessWidget {
                       tier.description,
                       style: const TextStyle(
                         fontSize: 14,
-                        color: CupertinoColors.secondaryLabel,
+                        color: Color(0xFFA1A1A6),
                         height: 1.4,
                       ),
                     ),
@@ -125,27 +126,27 @@ class HouseDetailSheet extends StatelessWidget {
                     Container(
                       padding: const EdgeInsets.all(14),
                       decoration: BoxDecoration(
-                        color: tier.accentColor.withValues(alpha: 0.1),
+                        color: const Color(0xFF1C1C1E),
                         borderRadius: BorderRadius.circular(16),
                         border: Border.all(
-                          color: tier.accentColor.withValues(alpha: 0.25),
+                          color: CupertinoColors.white.withValues(alpha: 0.15),
                         ),
                       ),
                       child: Column(
                         crossAxisAlignment: CrossAxisAlignment.start,
                         children: [
-                          Row(
+                          const Row(
                             children: [
                               Icon(
                                 CupertinoIcons.sparkles,
-                                color: tier.accentColor,
+                                color: CupertinoColors.white,
                                 size: 18,
                               ),
-                              const SizedBox(width: 8),
+                              SizedBox(width: 8),
                               Text(
                                 'ARCHITECTURAL PERK',
                                 style: TextStyle(
-                                  color: tier.accentColor,
+                                  color: CupertinoColors.white,
                                   fontSize: 12,
                                   fontWeight: FontWeight.bold,
                                   letterSpacing: 0.5,
@@ -159,6 +160,7 @@ class HouseDetailSheet extends StatelessWidget {
                             style: const TextStyle(
                               fontSize: 14,
                               fontWeight: FontWeight.w600,
+                              color: CupertinoColors.white,
                             ),
                           ),
                         ],
@@ -170,7 +172,7 @@ class HouseDetailSheet extends StatelessWidget {
                       style: TextStyle(
                         fontSize: 12,
                         fontWeight: FontWeight.bold,
-                        color: CupertinoColors.secondaryLabel,
+                        color: Color(0xFFA1A1A6),
                         letterSpacing: 0.5,
                       ),
                     ),
@@ -182,13 +184,13 @@ class HouseDetailSheet extends StatelessWidget {
                           children: [
                             const Icon(
                               CupertinoIcons.checkmark_alt_circle_fill,
-                              color: Color(0xFF10B981),
+                              color: CupertinoColors.white,
                               size: 16,
                             ),
                             const SizedBox(width: 8),
                             Text(
                               f,
-                              style: const TextStyle(fontSize: 14),
+                              style: const TextStyle(fontSize: 14, color: CupertinoColors.white),
                             ),
                           ],
                         ),
@@ -215,7 +217,9 @@ class HouseDetailSheet extends StatelessWidget {
     final isBlessed = contact!.hasBeenBlessedToday;
     return Column(
       children: [
-        CupertinoButton.filled(
+        CupertinoButton(
+          color: const Color(0xFF27272A),
+          borderRadius: BorderRadius.circular(14),
           onPressed: isBlessed
               ? null
               : () {
@@ -224,12 +228,13 @@ class HouseDetailSheet extends StatelessWidget {
           child: Row(
             mainAxisAlignment: MainAxisAlignment.center,
             children: [
-              const Icon(CupertinoIcons.sparkles),
+              const Icon(CupertinoIcons.sparkles, color: CupertinoColors.white),
               const SizedBox(width: 8),
               Text(
                 isBlessed
                     ? 'Blessed Today (+45 EP Claimed)'
                     : 'Send Solar Blessing (+45 EP)',
+                style: const TextStyle(color: CupertinoColors.white, fontWeight: FontWeight.bold),
               ),
             ],
           ),
@@ -239,7 +244,8 @@ class HouseDetailSheet extends StatelessWidget {
           children: [
             Expanded(
               child: CupertinoButton(
-                color: const Color(0xFF10B981),
+                color: const Color(0xFF1F1F22),
+                borderRadius: BorderRadius.circular(14),
                 onPressed: () {
                   Navigator.of(context).pop();
                   Navigator.of(context).push(
@@ -251,9 +257,9 @@ class HouseDetailSheet extends StatelessWidget {
                 child: const Row(
                   mainAxisAlignment: MainAxisAlignment.center,
                   children: [
-                    Icon(CupertinoIcons.phone_fill, size: 18),
+                    Icon(CupertinoIcons.phone_fill, size: 18, color: CupertinoColors.white),
                     SizedBox(width: 6),
-                    Text('Call (Earn CP)'),
+                    Text('Call (Earn CP)', style: TextStyle(color: CupertinoColors.white)),
                   ],
                 ),
               ),
@@ -261,7 +267,8 @@ class HouseDetailSheet extends StatelessWidget {
             const SizedBox(width: 10),
             Expanded(
               child: CupertinoButton(
-                color: const Color(0xFF0284C7),
+                color: const Color(0xFF1F1F22),
+                borderRadius: BorderRadius.circular(14),
                 onPressed: () {
                   Navigator.of(context).pop();
                   Navigator.of(context).push(
@@ -273,9 +280,9 @@ class HouseDetailSheet extends StatelessWidget {
                 child: const Row(
                   mainAxisAlignment: MainAxisAlignment.center,
                   children: [
-                    Icon(CupertinoIcons.chat_bubble_fill, size: 18),
+                    Icon(CupertinoIcons.chat_bubble_fill, size: 18, color: CupertinoColors.white),
                     SizedBox(width: 6),
-                    Text('Chat'),
+                    Text('Chat', style: TextStyle(color: CupertinoColors.white)),
                   ],
                 ),
               ),
@@ -292,14 +299,15 @@ class HouseDetailSheet extends StatelessWidget {
       return Container(
         padding: const EdgeInsets.all(16),
         decoration: BoxDecoration(
-          color: const Color(0xFFF43F5E).withValues(alpha: 0.15),
+          color: const Color(0xFF1C1C1E),
           borderRadius: BorderRadius.circular(16),
+          border: Border.all(color: CupertinoColors.white.withValues(alpha: 0.2)),
         ),
         child: const Center(
           child: Text(
             '🌟 MAX LEVEL ACHIEVED • Eclipse Celestial Sovereign!',
             style: TextStyle(
-              color: Color(0xFFF43F5E),
+              color: CupertinoColors.white,
               fontWeight: FontWeight.bold,
             ),
           ),
@@ -314,10 +322,10 @@ class HouseDetailSheet extends StatelessWidget {
     return Container(
       padding: const EdgeInsets.all(16),
       decoration: BoxDecoration(
-        color: CupertinoColors.secondarySystemGroupedBackground,
+        color: const Color(0xFF1C1C1E),
         borderRadius: BorderRadius.circular(20),
         border: Border.all(
-          color: next.accentColor.withValues(alpha: 0.3),
+          color: CupertinoColors.white.withValues(alpha: 0.15),
         ),
       ),
       child: Column(
@@ -328,8 +336,8 @@ class HouseDetailSheet extends StatelessWidget {
             children: [
               Text(
                 'UPGRADE TO LV ${next.level}: ${next.title.toUpperCase()}',
-                style: TextStyle(
-                  color: next.accentColor,
+                style: const TextStyle(
+                  color: CupertinoColors.white,
                   fontSize: 12,
                   fontWeight: FontWeight.bold,
                   letterSpacing: 0.5,
@@ -338,13 +346,13 @@ class HouseDetailSheet extends StatelessWidget {
               Container(
                 padding: const EdgeInsets.symmetric(horizontal: 8, vertical: 3),
                 decoration: BoxDecoration(
-                  color: next.accentColor.withValues(alpha: 0.2),
+                  color: const Color(0xFF27272A),
                   borderRadius: BorderRadius.circular(8),
                 ),
-                child: Text(
+                child: const Text(
                   'Massive Upgrade',
                   style: TextStyle(
-                    color: next.accentColor,
+                    color: CupertinoColors.white,
                     fontSize: 10,
                     fontWeight: FontWeight.bold,
                   ),
@@ -355,7 +363,7 @@ class HouseDetailSheet extends StatelessWidget {
           const SizedBox(height: 10),
           Text(
             next.description,
-            style: const TextStyle(fontSize: 13, color: CupertinoColors.secondaryLabel),
+            style: const TextStyle(fontSize: 13, color: Color(0xFFA1A1A6)),
           ),
           const SizedBox(height: 14),
           Row(
@@ -366,7 +374,6 @@ class HouseDetailSheet extends StatelessWidget {
                   current: GameState.instance.eclipsePoints,
                   required: next.baseCostEP,
                   icon: CupertinoIcons.sparkles,
-                  color: const Color(0xFFF59E0B),
                 ),
               ),
               const SizedBox(width: 10),
@@ -376,7 +383,6 @@ class HouseDetailSheet extends StatelessWidget {
                   current: GameState.instance.callPoints,
                   required: next.requiredCP,
                   icon: CupertinoIcons.phone_fill,
-                  color: const Color(0xFF10B981),
                 ),
               ),
             ],
@@ -384,7 +390,9 @@ class HouseDetailSheet extends StatelessWidget {
           const SizedBox(height: 16),
           SizedBox(
             width: double.infinity,
-            child: CupertinoButton.filled(
+            child: CupertinoButton(
+              color: canUpgrade ? CupertinoColors.white : const Color(0xFF27272A),
+              borderRadius: BorderRadius.circular(14),
               onPressed: canUpgrade
                   ? () {
                       final success = GameState.instance.upgradeHouse();
@@ -411,6 +419,10 @@ class HouseDetailSheet extends StatelessWidget {
                 canUpgrade
                     ? 'Upgrade Estate (${next.baseCostEP} EP + ${next.requiredCP} CP)'
                     : 'Insufficient Points to Upgrade',
+                style: TextStyle(
+                  color: canUpgrade ? CupertinoColors.black : const Color(0xFF71717A),
+                  fontWeight: FontWeight.bold,
+                ),
               ),
             ),
           ),
@@ -423,7 +435,7 @@ class HouseDetailSheet extends StatelessWidget {
               },
               child: const Text(
                 '📍 Relocate Realm Placement',
-                style: TextStyle(fontSize: 13),
+                style: TextStyle(fontSize: 13, color: Color(0xFFA1A1A6)),
               ),
             ),
           ),
@@ -439,14 +451,12 @@ class _RequirementBadge extends StatelessWidget {
     required this.current,
     required this.required,
     required this.icon,
-    required this.color,
   });
 
   final String label;
   final int current;
   final int required;
   final IconData icon;
-  final Color color;
 
   @override
   Widget build(BuildContext context) {
@@ -454,10 +464,10 @@ class _RequirementBadge extends StatelessWidget {
     return Container(
       padding: const EdgeInsets.all(10),
       decoration: BoxDecoration(
-        color: color.withValues(alpha: 0.1),
+        color: const Color(0xFF242426),
         borderRadius: BorderRadius.circular(12),
         border: Border.all(
-          color: isMet ? color : CupertinoColors.systemRed.withValues(alpha: 0.5),
+          color: isMet ? CupertinoColors.white.withValues(alpha: 0.25) : const Color(0x33FFFFFF),
         ),
       ),
       child: Column(
@@ -465,12 +475,12 @@ class _RequirementBadge extends StatelessWidget {
         children: [
           Row(
             children: [
-              Icon(icon, size: 14, color: color),
+              Icon(icon, size: 14, color: CupertinoColors.white),
               const SizedBox(width: 4),
               Expanded(
                 child: Text(
                   label,
-                  style: const TextStyle(fontSize: 11, fontWeight: FontWeight.w600),
+                  style: const TextStyle(fontSize: 11, fontWeight: FontWeight.w600, color: Color(0xFFA1A1A6)),
                 ),
               ),
             ],
@@ -481,7 +491,7 @@ class _RequirementBadge extends StatelessWidget {
             style: TextStyle(
               fontSize: 13,
               fontWeight: FontWeight.bold,
-              color: isMet ? color : CupertinoColors.systemRed,
+              color: isMet ? CupertinoColors.white : const Color(0xFF71717A),
             ),
           ),
         ],

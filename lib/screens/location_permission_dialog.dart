@@ -20,12 +20,15 @@ class LocationPermissionDialog extends StatelessWidget {
           Container(
             padding: const EdgeInsets.all(12),
             decoration: BoxDecoration(
-              color: const Color(0xFFF59E0B).withValues(alpha: 0.15),
+              color: const Color(0xFF27272A),
               shape: BoxShape.circle,
+              border: Border.all(
+                color: CupertinoColors.white.withValues(alpha: 0.2),
+              ),
             ),
             child: const Icon(
               CupertinoIcons.location_solid,
-              color: Color(0xFFF59E0B),
+              color: CupertinoColors.white,
               size: 32,
             ),
           ),
@@ -43,7 +46,7 @@ class LocationPermissionDialog extends StatelessWidget {
         CupertinoDialogAction(
           onPressed: () {
             GameState.instance.grantLocationPermission(
-              'Silicon Coast Heights',
+              'Titanium Coast Heights',
               37.332,
               -122.031,
             );
@@ -61,7 +64,7 @@ class LocationPermissionDialog extends StatelessWidget {
           isDestructiveAction: true,
           onPressed: () {
             GameState.instance.grantLocationPermission(
-              'Uncharted Wilderness',
+              'Obsidian Outpost',
               37.774,
               -122.419,
             );
@@ -76,10 +79,10 @@ class LocationPermissionDialog extends StatelessWidget {
   static void _showCustomRealmPicker(BuildContext context) {
     Navigator.of(context).pop();
     final realms = [
-      {'name': 'Emerald Coast Bay', 'lat': 37.562, 'lng': -122.325},
-      {'name': 'Avalon Summit Peak', 'lat': 37.441, 'lng': -122.143},
-      {'name': 'Neo-Arcadia Citadel', 'lat': 37.804, 'lng': -122.251},
-      {'name': 'Whispering Forest Glade', 'lat': 37.865, 'lng': -122.258},
+      {'name': 'Titanium Coast Heights', 'lat': 37.562, 'lng': -122.325},
+      {'name': 'Granite Summit Peak', 'lat': 37.441, 'lng': -122.143},
+      {'name': 'Obsidian District Citadel', 'lat': 37.804, 'lng': -122.251},
+      {'name': 'Silver Glade Forest', 'lat': 37.865, 'lng': -122.258},
       {'name': 'Celestial Orbit Sanctuary', 'lat': 37.783, 'lng': -122.416},
     ];
 

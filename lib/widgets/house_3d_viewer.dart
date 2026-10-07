@@ -65,15 +65,15 @@ class _House3DViewerState extends State<House3DViewer>
       height: widget.height,
       width: double.infinity,
       decoration: BoxDecoration(
-        color: const Color(0xFF070C18),
+        color: const Color(0xFF09090B),
         borderRadius: BorderRadius.circular(22),
         border: Border.all(
-          color: widget.tier.accentColor.withValues(alpha: 0.35),
-          width: 1.2,
+          color: CupertinoColors.white.withValues(alpha: 0.14),
+          width: 1.0,
         ),
         boxShadow: [
           BoxShadow(
-            color: widget.tier.accentColor.withValues(alpha: 0.18),
+            color: CupertinoColors.black.withValues(alpha: 0.7),
             blurRadius: 24,
             spreadRadius: 2,
             offset: const Offset(0, 8),
@@ -89,7 +89,7 @@ class _House3DViewerState extends State<House3DViewer>
                 onPanStart: (_) => setState(() => _autoRotate = false),
                 onPanUpdate: _onPanUpdate,
                 child: CustomPaint(
-                  painter: _House3DPainter(
+                  painter: _House3DMonochromePainter(
                     tier: widget.tier,
                     yaw: _yaw,
                     pitch: _pitch,
@@ -104,25 +104,25 @@ class _House3DViewerState extends State<House3DViewer>
               child: Container(
                 padding: const EdgeInsets.symmetric(horizontal: 10, vertical: 5),
                 decoration: BoxDecoration(
-                  color: const Color(0xFF0B132B).withValues(alpha: 0.75),
+                  color: const Color(0xFF141416).withValues(alpha: 0.85),
                   borderRadius: BorderRadius.circular(12),
                   border: Border.all(
-                    color: widget.tier.accentColor.withValues(alpha: 0.6),
+                    color: CupertinoColors.white.withValues(alpha: 0.18),
                   ),
                 ),
                 child: Row(
                   mainAxisSize: MainAxisSize.min,
                   children: [
-                    Icon(
+                    const Icon(
                       CupertinoIcons.cube_box_fill,
                       size: 13,
-                      color: widget.tier.accentColor,
+                      color: EclipseTheme.white,
                     ),
                     const SizedBox(width: 5),
                     Text(
                       '3D LV. ${widget.tier.level} • ${widget.tier.title.toUpperCase()}',
-                      style: TextStyle(
-                        color: widget.tier.accentColor,
+                      style: const TextStyle(
+                        color: EclipseTheme.white,
                         fontSize: 11,
                         fontWeight: FontWeight.bold,
                         letterSpacing: 0.5,
@@ -138,16 +138,16 @@ class _House3DViewerState extends State<House3DViewer>
               child: GestureDetector(
                 onTap: () => setState(() => _autoRotate = !_autoRotate),
                 child: Container(
-                  padding: const EdgeInsets.symmetric(horizontal: 9, vertical: 5),
+                  padding: const EdgeInsets.symmetric(horizontal: 10, vertical: 5),
                   decoration: BoxDecoration(
                     color: _autoRotate
-                        ? widget.tier.accentColor.withValues(alpha: 0.25)
-                        : const Color(0xFF1E293B).withValues(alpha: 0.6),
+                        ? const Color(0xFF242428)
+                        : const Color(0xFF141416).withValues(alpha: 0.8),
                     borderRadius: BorderRadius.circular(12),
                     border: Border.all(
                       color: _autoRotate
-                          ? widget.tier.accentColor
-                          : EclipseTheme.cardBorder,
+                          ? CupertinoColors.white.withValues(alpha: 0.4)
+                          : CupertinoColors.white.withValues(alpha: 0.12),
                     ),
                   ),
                   child: Row(
@@ -157,15 +157,15 @@ class _House3DViewerState extends State<House3DViewer>
                         CupertinoIcons.arrow_2_circlepath,
                         size: 12,
                         color: _autoRotate
-                            ? widget.tier.accentColor
+                            ? EclipseTheme.white
                             : EclipseTheme.textSecondary,
                       ),
-                      const SizedBox(width: 4),
+                      const SizedBox(width: 5),
                       Text(
                         _autoRotate ? '360° SPIN' : 'PAUSED',
                         style: TextStyle(
                           color: _autoRotate
-                              ? widget.tier.accentColor
+                              ? EclipseTheme.white
                               : EclipseTheme.textSecondary,
                           fontSize: 10,
                           fontWeight: FontWeight.bold,
@@ -183,7 +183,7 @@ class _House3DViewerState extends State<House3DViewer>
               child: Container(
                 padding: const EdgeInsets.symmetric(horizontal: 14, vertical: 8),
                 decoration: BoxDecoration(
-                  color: const Color(0xFF0F172A).withValues(alpha: 0.85),
+                  color: const Color(0xFF141416).withValues(alpha: 0.9),
                   borderRadius: BorderRadius.circular(14),
                   border: Border.all(
                     color: CupertinoColors.white.withValues(alpha: 0.1),
@@ -193,7 +193,7 @@ class _House3DViewerState extends State<House3DViewer>
                   children: [
                     const Icon(
                       CupertinoIcons.hand_draw_fill,
-                      color: Color(0xFF94A3B8),
+                      color: EclipseTheme.textSecondary,
                       size: 14,
                     ),
                     const SizedBox(width: 8),
@@ -201,7 +201,7 @@ class _House3DViewerState extends State<House3DViewer>
                       child: Text(
                         'Drag to rotate 3D view in real time',
                         style: TextStyle(
-                          color: Color(0xFF94A3B8),
+                          color: EclipseTheme.textSecondary,
                           fontSize: 12,
                         ),
                       ),
@@ -212,13 +212,16 @@ class _House3DViewerState extends State<House3DViewer>
                         vertical: 4,
                       ),
                       decoration: BoxDecoration(
-                        color: widget.tier.accentColor.withValues(alpha: 0.2),
+                        color: const Color(0xFF222225),
                         borderRadius: BorderRadius.circular(8),
+                        border: Border.all(
+                          color: CupertinoColors.white.withValues(alpha: 0.15),
+                        ),
                       ),
                       child: Text(
                         '+${widget.tier.dailyIncomeEP} EP/day',
-                        style: TextStyle(
-                          color: widget.tier.accentColor,
+                        style: const TextStyle(
+                          color: EclipseTheme.white,
                           fontSize: 11,
                           fontWeight: FontWeight.bold,
                         ),
@@ -235,8 +238,8 @@ class _House3DViewerState extends State<House3DViewer>
   }
 }
 
-class _House3DPainter extends CustomPainter {
-  _House3DPainter({
+class _House3DMonochromePainter extends CustomPainter {
+  _House3DMonochromePainter({
     required this.tier,
     required this.yaw,
     required this.pitch,
@@ -295,26 +298,23 @@ class _House3DPainter extends CustomPainter {
   void _drawBackgroundGlow(Canvas canvas, Size size, Offset center) {
     final radial = RadialGradient(
       colors: [
-        tier.accentColor.withValues(alpha: 0.35),
-        tier.accentColor.withValues(alpha: 0.08),
+        CupertinoColors.white.withValues(alpha: 0.12),
+        CupertinoColors.white.withValues(alpha: 0.02),
         CupertinoColors.transparent,
       ],
-      radius: 0.6,
+      radius: 0.65,
     );
     final paint = Paint()
       ..shader = radial.createShader(Rect.fromCircle(center: center, radius: 150));
     canvas.drawCircle(center, 150, paint);
   }
 
-  // 3D Isometric Projection helper
   Offset _project(double x, double y, double z, double cx, double cy) {
-    // 3D rotation around Y axis (yaw)
     final cosY = math.cos(yaw);
     final sinY = math.sin(yaw);
     final rotX = x * cosY - y * sinY;
     final rotY = x * sinY + y * cosY;
 
-    // Projection with pitch tilt
     final cosP = math.cos(pitch);
     final sinP = math.sin(pitch);
     final screenX = cx + rotX;
@@ -356,14 +356,14 @@ class _House3DPainter extends CustomPainter {
         ..lineTo(b1.dx, b1.dy)
         ..close();
 
-      final shade = (0.2 + 0.3 * math.sin(angle + yaw)).clamp(0.1, 0.6);
+      final shade = (0.2 + 0.25 * math.sin(angle + yaw)).clamp(0.1, 0.5);
       canvas.drawPath(
         sidePath,
-        Paint()..color = const Color(0xFF1E293B).withValues(alpha: shade),
+        Paint()..color = const Color(0xFF1C1C1E).withValues(alpha: shade),
       );
     }
 
-    // Draw top polygon
+    // Top plinth
     final topPath = Path()..moveTo(topPoints[0].dx, topPoints[0].dy);
     for (int i = 1; i < segments; i++) {
       topPath.lineTo(topPoints[i].dx, topPoints[i].dy);
@@ -375,16 +375,16 @@ class _House3DPainter extends CustomPainter {
         begin: Alignment.topLeft,
         end: Alignment.bottomRight,
         colors: [
-          const Color(0xFF1E293B),
-          const Color(0xFF0F172A),
+          const Color(0xFF202023),
+          const Color(0xFF101012),
         ],
       ).createShader(Rect.fromCircle(center: Offset(cx, cy), radius: 80));
     canvas.drawPath(topPath, plinthPaint);
 
     final edgePaint = Paint()
-      ..color = tier.accentColor.withValues(alpha: 0.6)
+      ..color = CupertinoColors.white.withValues(alpha: 0.35)
       ..style = PaintingStyle.stroke
-      ..strokeWidth = 1.2;
+      ..strokeWidth = 1.0;
     canvas.drawPath(topPath, edgePaint);
   }
 
@@ -431,9 +431,9 @@ class _House3DPainter extends CustomPainter {
       canvas.drawPath(
         border,
         Paint()
-          ..color = tier.accentColor
+          ..color = CupertinoColors.white.withValues(alpha: 0.8)
           ..style = PaintingStyle.stroke
-          ..strokeWidth = 1.8,
+          ..strokeWidth = 1.4,
       );
     }
   }
@@ -466,30 +466,29 @@ class _House3DPainter extends CustomPainter {
       w: 42,
       d: 42,
       h: 24,
-      color: const Color(0xFF78350F),
-      topColor: const Color(0xFF92400E),
+      color: const Color(0xFF2C2C2E),
+      topColor: const Color(0xFF3A3A3C),
     );
 
-    // 3D Roof Apex
     final apex = _project(0, 0, 48, cx, cy);
     final r1 = _project(-25, -25, 24, cx, cy);
     final r2 = _project(25, -25, 24, cx, cy);
     final r3 = _project(25, 25, 24, cx, cy);
     final r4 = _project(-25, 25, 24, cx, cy);
 
-    _drawTriangle(canvas, r1, r2, apex, const Color(0xFFB45309));
-    _drawTriangle(canvas, r2, r3, apex, const Color(0xFF92400E));
-    _drawTriangle(canvas, r3, r4, apex, const Color(0xFF78350F));
-    _drawTriangle(canvas, r4, r1, apex, const Color(0xFFA16207));
+    _drawTriangle(canvas, r1, r2, apex, const Color(0xFF48484A));
+    _drawTriangle(canvas, r2, r3, apex, const Color(0xFF3A3A3C));
+    _drawTriangle(canvas, r3, r4, apex, const Color(0xFF2C2C2E));
+    _drawTriangle(canvas, r4, r1, apex, const Color(0xFF3A3A3C));
 
-    // Campfire beside hut
+    // Campfire with pure white ash glow
     final fireBase = _project(38, 12, 0, cx, cy);
-    canvas.drawCircle(fireBase, 7, Paint()..color = const Color(0xFF44403C));
-    final flameRadius = 6 + 3 * math.sin(animProgress * 8 * math.pi);
+    canvas.drawCircle(fireBase, 6, Paint()..color = const Color(0xFF1C1C1E));
+    final flameRadius = 5 + 2 * math.sin(animProgress * 8 * math.pi);
     canvas.drawCircle(
-      Offset(fireBase.dx, fireBase.dy - 6),
+      Offset(fireBase.dx, fireBase.dy - 5),
       flameRadius,
-      Paint()..color = const Color(0xFFF59E0B),
+      Paint()..color = CupertinoColors.white.withValues(alpha: 0.9),
     );
   }
 
@@ -504,11 +503,10 @@ class _House3DPainter extends CustomPainter {
       w: 52,
       d: 42,
       h: 30,
-      color: const Color(0xFF854D0E),
-      topColor: const Color(0xFFA16207),
+      color: const Color(0xFF2C2C2E),
+      topColor: const Color(0xFF3A3A3C),
     );
 
-    // 3D Gabled Roof
     final ridge1 = _project(-26, 0, 50, cx, cy);
     final ridge2 = _project(26, 0, 50, cx, cy);
     final e1 = _project(-28, -23, 30, cx, cy);
@@ -516,12 +514,12 @@ class _House3DPainter extends CustomPainter {
     final e3 = _project(28, 23, 30, cx, cy);
     final e4 = _project(-28, 23, 30, cx, cy);
 
-    _drawQuad(canvas, e1, e2, ridge2, ridge1, const Color(0xFF451A03));
-    _drawQuad(canvas, e3, e4, ridge1, ridge2, const Color(0xFF78350F));
-    _drawTriangle(canvas, e2, e3, ridge2, const Color(0xFF92400E));
-    _drawTriangle(canvas, e4, e1, ridge1, const Color(0xFF713F12));
+    _drawQuad(canvas, e1, e2, ridge2, ridge1, const Color(0xFF48484A));
+    _drawQuad(canvas, e3, e4, ridge1, ridge2, const Color(0xFF3A3A3C));
+    _drawTriangle(canvas, e2, e3, ridge2, const Color(0xFF2C2C2E));
+    _drawTriangle(canvas, e4, e1, ridge1, const Color(0xFF3A3A3C));
 
-    // 3D Chimney with smoke
+    // Chimney with white smoke
     _draw3DCube(
       canvas,
       cx: cx,
@@ -532,13 +530,13 @@ class _House3DPainter extends CustomPainter {
       w: 10,
       d: 10,
       h: 28,
-      color: const Color(0xFF57534E),
+      color: const Color(0xFF242426),
     );
     final smokePoint = _project(16, 10, 60, cx, cy);
     canvas.drawCircle(
       smokePoint,
       5,
-      Paint()..color = CupertinoColors.white.withValues(alpha: 0.35),
+      Paint()..color = CupertinoColors.white.withValues(alpha: 0.4),
     );
   }
 
@@ -553,11 +551,10 @@ class _House3DPainter extends CustomPainter {
       w: 64,
       d: 50,
       h: 26,
-      color: const Color(0xFFE2E8F0),
-      topColor: const Color(0xFF0284C7),
+      color: const Color(0xFF3A3A3C),
+      topColor: const Color(0xFF48484A),
       glow: true,
     );
-    // Solar roof cap
     _draw3DCube(
       canvas,
       cx: cx,
@@ -568,8 +565,8 @@ class _House3DPainter extends CustomPainter {
       w: 66,
       d: 52,
       h: 6,
-      color: const Color(0xFF0369A1),
-      topColor: const Color(0xFF38BDF8),
+      color: const Color(0xFF2C2C2E),
+      topColor: const Color(0xFFE5E5EA),
     );
   }
 
@@ -584,8 +581,8 @@ class _House3DPainter extends CustomPainter {
       w: 44,
       d: 46,
       h: 46,
-      color: const Color(0xFF64748B),
-      topColor: const Color(0xFF94A3B8),
+      color: const Color(0xFF333336),
+      topColor: const Color(0xFF48484A),
       glow: true,
     );
     _draw3DCube(
@@ -598,21 +595,20 @@ class _House3DPainter extends CustomPainter {
       w: 36,
       d: 40,
       h: 34,
-      color: const Color(0xFF475569),
-      topColor: const Color(0xFFCBD5E1),
+      color: const Color(0xFF242426),
+      topColor: const Color(0xFF3A3A3C),
     );
 
-    // 3D Pool
+    // Reflective monochrome pool
     final poolCenter = _project(22, -26, 0, cx, cy);
-    canvas.drawCircle(poolCenter, 14, Paint()..color = const Color(0xFF06B6D4));
-    final ripple = 1.0 + 0.3 * math.sin(animProgress * 6 * math.pi);
+    canvas.drawCircle(poolCenter, 13, Paint()..color = const Color(0xFF141416));
     canvas.drawCircle(
       poolCenter,
-      12 * ripple,
+      13,
       Paint()
         ..color = CupertinoColors.white.withValues(alpha: 0.3)
         ..style = PaintingStyle.stroke
-        ..strokeWidth = 1.5,
+        ..strokeWidth = 1.0,
     );
   }
 
@@ -627,12 +623,12 @@ class _House3DPainter extends CustomPainter {
       w: 42,
       d: 42,
       h: 75,
-      color: const Color(0xFF1E1B4B),
-      topColor: const Color(0xFF4338CA),
+      color: const Color(0xFF1C1C1E),
+      topColor: const Color(0xFF2C2C2E),
       glow: true,
     );
 
-    // Neon penthouse cap
+    // Architectural top
     _draw3DCube(
       canvas,
       cx: cx,
@@ -643,14 +639,22 @@ class _House3DPainter extends CustomPainter {
       w: 34,
       d: 34,
       h: 16,
-      color: const Color(0xFF831843),
-      topColor: const Color(0xFFEC4899),
+      color: const Color(0xFF2C2C2E),
+      topColor: const Color(0xFFE5E5EA),
       glow: true,
     );
 
-    // Rooftop jacuzzi
+    // Rooftop pool
     final jacuzzi = _project(6, 6, 91, cx, cy);
-    canvas.drawCircle(jacuzzi, 6, Paint()..color = const Color(0xFF06B6D4));
+    canvas.drawCircle(jacuzzi, 6, Paint()..color = const Color(0xFF141416));
+    canvas.drawCircle(
+      jacuzzi,
+      6,
+      Paint()
+        ..color = CupertinoColors.white.withValues(alpha: 0.5)
+        ..style = PaintingStyle.stroke
+        ..strokeWidth = 1.0,
+    );
   }
 
   void _draw3DCoastalVilla(Canvas canvas, double cx, double cy) {
@@ -664,25 +668,32 @@ class _House3DPainter extends CustomPainter {
       w: 66,
       d: 48,
       h: 36,
-      color: const Color(0xFFFFFBEB),
-      topColor: const Color(0xFFEA580C),
+      color: const Color(0xFFD1D1D6),
+      topColor: const Color(0xFFE5E5EA),
     );
 
-    // Terracotta roof
     final apex = _project(0, 0, 56, cx, cy);
     final r1 = _project(-35, -26, 36, cx, cy);
     final r2 = _project(35, -26, 36, cx, cy);
     final r3 = _project(35, 26, 36, cx, cy);
     final r4 = _project(-35, 26, 36, cx, cy);
 
-    _drawTriangle(canvas, r1, r2, apex, const Color(0xFFC2410C));
-    _drawTriangle(canvas, r2, r3, apex, const Color(0xFFEA580C));
-    _drawTriangle(canvas, r3, r4, apex, const Color(0xFFF97316));
-    _drawTriangle(canvas, r4, r1, apex, const Color(0xFF9A3412));
+    _drawTriangle(canvas, r1, r2, apex, const Color(0xFF48484A));
+    _drawTriangle(canvas, r2, r3, apex, const Color(0xFF3A3A3C));
+    _drawTriangle(canvas, r3, r4, apex, const Color(0xFF2C2C2E));
+    _drawTriangle(canvas, r4, r1, apex, const Color(0xFF3A3A3C));
 
     // Infinity pool
     final pCenter = _project(0, 34, 0, cx, cy);
-    canvas.drawCircle(pCenter, 18, Paint()..color = const Color(0xFF0D9488));
+    canvas.drawCircle(pCenter, 18, Paint()..color = const Color(0xFF141416));
+    canvas.drawCircle(
+      pCenter,
+      18,
+      Paint()
+        ..color = CupertinoColors.white.withValues(alpha: 0.4)
+        ..style = PaintingStyle.stroke
+        ..strokeWidth = 1.0,
+    );
   }
 
   void _draw3DHilltopMansion(Canvas canvas, double cx, double cy) {
@@ -696,8 +707,8 @@ class _House3DPainter extends CustomPainter {
       w: 56,
       d: 44,
       h: 46,
-      color: const Color(0xFFF1F5F9),
-      topColor: const Color(0xFF64748B),
+      color: const Color(0xFF3A3A3C),
+      topColor: const Color(0xFF48484A),
     );
     _draw3DCube(
       canvas,
@@ -709,7 +720,7 @@ class _House3DPainter extends CustomPainter {
       w: 30,
       d: 38,
       h: 34,
-      color: const Color(0xFFE2E8F0),
+      color: const Color(0xFF2C2C2E),
     );
     _draw3DCube(
       canvas,
@@ -721,20 +732,20 @@ class _House3DPainter extends CustomPainter {
       w: 30,
       d: 38,
       h: 34,
-      color: const Color(0xFFE2E8F0),
+      color: const Color(0xFF2C2C2E),
     );
 
-    // 3D Helipad
+    // Helipad
     final heliCenter = _project(42, -26, 0, cx, cy);
-    canvas.drawCircle(heliCenter, 13, Paint()..color = const Color(0xFF334155));
+    canvas.drawCircle(heliCenter, 13, Paint()..color = const Color(0xFF1C1C1E));
     final ringPulse = 0.5 + 0.5 * math.sin(animProgress * 4 * math.pi);
     canvas.drawCircle(
       heliCenter,
       13,
       Paint()
-        ..color = const Color(0xFFF59E0B).withValues(alpha: ringPulse)
+        ..color = CupertinoColors.white.withValues(alpha: ringPulse)
         ..style = PaintingStyle.stroke
-        ..strokeWidth = 2,
+        ..strokeWidth = 1.5,
     );
   }
 
@@ -749,27 +760,27 @@ class _House3DPainter extends CustomPainter {
       w: 62,
       d: 48,
       h: 48,
-      color: const Color(0xFFFEF9C3),
-      topColor: const Color(0xFFCA8A04),
+      color: const Color(0xFF2C2C2E),
+      topColor: const Color(0xFF3A3A3C),
     );
 
-    // 3D Golden Domes
+    // Silver Domes
     final domePoint = _project(0, 0, 52, cx, cy);
-    canvas.drawCircle(domePoint, 18, Paint()..color = const Color(0xFFEAB308));
+    canvas.drawCircle(domePoint, 18, Paint()..color = const Color(0xFFE5E5EA));
     final spirePoint = _project(0, 0, 80, cx, cy);
     canvas.drawLine(
       domePoint,
       spirePoint,
       Paint()
-        ..color = const Color(0xFFCA8A04)
-        ..strokeWidth = 3,
+        ..color = CupertinoColors.white
+        ..strokeWidth = 2.5,
     );
   }
 
   void _draw3DCyberCitadel(Canvas canvas, double cx, double cy) {
     final floatZ = 12 + 6 * math.sin(animProgress * 2 * math.pi);
 
-    // Floating central core
+    // Floating central fortress
     _draw3DCube(
       canvas,
       cx: cx,
@@ -780,12 +791,12 @@ class _House3DPainter extends CustomPainter {
       w: 42,
       d: 42,
       h: 60,
-      color: const Color(0xFF1E1035),
-      topColor: const Color(0xFF7C3AED),
+      color: const Color(0xFF141416),
+      topColor: const Color(0xFFE5E5EA),
       glow: true,
     );
 
-    // 4 Orbiting 3D monoliths
+    // 4 Orbiting 3D monoliths in monochrome titanium
     for (int i = 0; i < 4; i++) {
       final angle = yaw + (i * math.pi / 2) + (animProgress * 2 * math.pi);
       final mX = 52 * math.cos(angle);
@@ -800,8 +811,8 @@ class _House3DPainter extends CustomPainter {
         w: 12,
         d: 12,
         h: 34,
-        color: const Color(0xFF8B5CF6),
-        topColor: const Color(0xFFA78BFA),
+        color: const Color(0xFF2C2C2E),
+        topColor: const Color(0xFFD1D1D6),
         glow: true,
       );
     }
@@ -810,7 +821,7 @@ class _House3DPainter extends CustomPainter {
   void _draw3DEclipseSanctuary(Canvas canvas, double cx, double cy) {
     final floatZ = 20 + 8 * math.sin(animProgress * 2 * math.pi);
 
-    // Central astral palace
+    // Central astral sanctuary
     _draw3DCube(
       canvas,
       cx: cx,
@@ -821,18 +832,18 @@ class _House3DPainter extends CustomPainter {
       w: 48,
       d: 48,
       h: 64,
-      color: const Color(0xFF4C0519),
-      topColor: const Color(0xFFF43F5E),
+      color: const Color(0xFF121214),
+      topColor: const Color(0xFFFFFFFF),
       glow: true,
     );
 
-    // 3D Concentric Solar Eclipse Rings
+    // 3D Celestial Eclipse Corona Rings in blinding pure white
     final ringCenter = _project(0, 0, floatZ + 32, cx, cy);
     final ringRadius = 70.0;
     final ringPaint = Paint()
-      ..color = const Color(0xFFF59E0B).withValues(alpha: 0.7)
+      ..color = CupertinoColors.white.withValues(alpha: 0.85)
       ..style = PaintingStyle.stroke
-      ..strokeWidth = 3;
+      ..strokeWidth = 2.5;
     canvas.drawOval(
       Rect.fromCenter(
         center: ringCenter,
@@ -853,7 +864,7 @@ class _House3DPainter extends CustomPainter {
   }
 
   @override
-  bool shouldRepaint(covariant _House3DPainter oldDelegate) {
+  bool shouldRepaint(covariant _House3DMonochromePainter oldDelegate) {
     return oldDelegate.yaw != yaw ||
         oldDelegate.pitch != pitch ||
         oldDelegate.animProgress != animProgress ||

@@ -37,9 +37,9 @@ class _AdaptiveLayoutState extends State<AdaptiveLayout> {
           return CupertinoTabScaffold(
             tabBar: CupertinoTabBar(
               currentIndex: _currentTabIndex,
-              backgroundColor: const Color(0xFF0F172A).withValues(alpha: 0.95),
-              activeColor: const Color(0xFFF59E0B),
-              inactiveColor: const Color(0xFF64748B),
+              backgroundColor: const Color(0xFF121212).withValues(alpha: 0.95),
+              activeColor: CupertinoColors.white,
+              inactiveColor: const Color(0xFF71717A),
               border: Border(
                 top: BorderSide(
                   color: CupertinoColors.white.withValues(alpha: 0.08),

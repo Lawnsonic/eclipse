@@ -38,9 +38,7 @@ class _MyEstateScreenState extends State<MyEstateScreen>
         _FloatingParticle(
           offset: details.localPosition,
           text: '+${3 * GameState.instance.comboMultiplier} EP',
-          color: GameState.instance.comboMultiplier > 2
-              ? const Color(0xFFF43F5E)
-              : const Color(0xFFF59E0B),
+          color: CupertinoColors.white,
         ),
       );
     });
@@ -66,7 +64,7 @@ class _MyEstateScreenState extends State<MyEstateScreen>
         return CupertinoPageScaffold(
           backgroundColor: EclipseTheme.background,
           navigationBar: CupertinoNavigationBar(
-            backgroundColor: const Color(0xFF0F172A).withValues(alpha: 0.9),
+            backgroundColor: const Color(0xFF0D0D0E).withValues(alpha: 0.95),
             border: Border(
               bottom: BorderSide(
                 color: CupertinoColors.white.withValues(alpha: 0.08),
@@ -83,7 +81,7 @@ class _MyEstateScreenState extends State<MyEstateScreen>
               padding: EdgeInsets.zero,
               child: const Icon(
                 CupertinoIcons.location_circle_fill,
-                color: Color(0xFFF59E0B),
+                color: CupertinoColors.white,
               ),
               onPressed: () => LocationPermissionDialog.show(context),
             ),
@@ -122,13 +120,16 @@ class _MyEstateScreenState extends State<MyEstateScreen>
                 Container(
                   padding: const EdgeInsets.all(8),
                   decoration: BoxDecoration(
-                    color: const Color(0xFFF59E0B).withValues(alpha: 0.2),
+                    color: const Color(0xFF242426),
                     shape: BoxShape.circle,
+                    border: Border.all(
+                      color: CupertinoColors.white.withValues(alpha: 0.15),
+                    ),
                   ),
                   child: const Icon(
                     CupertinoIcons.sparkles,
-                    color: Color(0xFFF59E0B),
-                    size: 20,
+                    color: CupertinoColors.white,
+                    size: 18,
                   ),
                 ),
                 const SizedBox(width: 10),
@@ -139,7 +140,7 @@ class _MyEstateScreenState extends State<MyEstateScreen>
                       'Eclipse Points',
                       style: TextStyle(
                         fontSize: 11,
-                        color: EclipseTheme.textMuted,
+                        color: EclipseTheme.textSecondary,
                       ),
                     ),
                     Text(
@@ -147,7 +148,7 @@ class _MyEstateScreenState extends State<MyEstateScreen>
                       style: const TextStyle(
                         fontSize: 17,
                         fontWeight: FontWeight.bold,
-                        color: Color(0xFFF59E0B),
+                        color: CupertinoColors.white,
                       ),
                     ),
                   ],
@@ -167,13 +168,16 @@ class _MyEstateScreenState extends State<MyEstateScreen>
                 Container(
                   padding: const EdgeInsets.all(8),
                   decoration: BoxDecoration(
-                    color: const Color(0xFF10B981).withValues(alpha: 0.2),
+                    color: const Color(0xFF242426),
                     shape: BoxShape.circle,
+                    border: Border.all(
+                      color: CupertinoColors.white.withValues(alpha: 0.15),
+                    ),
                   ),
                   child: const Icon(
                     CupertinoIcons.phone_fill,
-                    color: Color(0xFF10B981),
-                    size: 20,
+                    color: CupertinoColors.white,
+                    size: 18,
                   ),
                 ),
                 const SizedBox(width: 10),
@@ -184,7 +188,7 @@ class _MyEstateScreenState extends State<MyEstateScreen>
                       'Call Points',
                       style: TextStyle(
                         fontSize: 11,
-                        color: EclipseTheme.textMuted,
+                        color: EclipseTheme.textSecondary,
                       ),
                     ),
                     Text(
@@ -192,7 +196,7 @@ class _MyEstateScreenState extends State<MyEstateScreen>
                       style: const TextStyle(
                         fontSize: 17,
                         fontWeight: FontWeight.bold,
-                        color: Color(0xFF10B981),
+                        color: CupertinoColors.white,
                       ),
                     ),
                   ],
@@ -212,16 +216,16 @@ class _MyEstateScreenState extends State<MyEstateScreen>
         gradient: const LinearGradient(
           begin: Alignment.topLeft,
           end: Alignment.bottomRight,
-          colors: [Color(0xFF1E1035), Color(0xFF451A03)],
+          colors: [Color(0xFF18181A), Color(0xFF0F0F10)],
         ),
         borderRadius: BorderRadius.circular(20),
         border: Border.all(
-          color: const Color(0xFFF59E0B).withValues(alpha: 0.35),
+          color: CupertinoColors.white.withValues(alpha: 0.15),
           width: 1.2,
         ),
         boxShadow: [
           BoxShadow(
-            color: const Color(0xFFF59E0B).withValues(alpha: 0.2),
+            color: CupertinoColors.black.withValues(alpha: 0.6),
             blurRadius: 20,
             offset: const Offset(0, 6),
           ),
@@ -236,7 +240,7 @@ class _MyEstateScreenState extends State<MyEstateScreen>
                 children: [
                   Icon(
                     CupertinoIcons.flame_fill,
-                    color: Color(0xFFF59E0B),
+                    color: CupertinoColors.white,
                     size: 18,
                   ),
                   SizedBox(width: 8),
@@ -255,14 +259,16 @@ class _MyEstateScreenState extends State<MyEstateScreen>
                 padding: const EdgeInsets.symmetric(horizontal: 10, vertical: 4),
                 decoration: BoxDecoration(
                   color: state.comboMultiplier > 1
-                      ? const Color(0xFFF43F5E)
-                      : CupertinoColors.white.withValues(alpha: 0.15),
+                      ? CupertinoColors.white
+                      : const Color(0xFF27272A),
                   borderRadius: BorderRadius.circular(10),
                 ),
                 child: Text(
                   '${state.comboMultiplier}x COMBO',
-                  style: const TextStyle(
-                    color: CupertinoColors.white,
+                  style: TextStyle(
+                    color: state.comboMultiplier > 1
+                        ? CupertinoColors.black
+                        : CupertinoColors.white,
                     fontSize: 11,
                     fontWeight: FontWeight.bold,
                   ),
@@ -298,12 +304,9 @@ class _MyEstateScreenState extends State<MyEstateScreen>
                           shape: BoxShape.circle,
                           boxShadow: [
                             BoxShadow(
-                              color: (state.comboMultiplier > 2
-                                      ? const Color(0xFFF43F5E)
-                                      : const Color(0xFFF59E0B))
-                                  .withValues(alpha: 0.6),
+                              color: CupertinoColors.white.withValues(alpha: 0.25),
                               blurRadius: 36,
-                              spreadRadius: 8,
+                              spreadRadius: 6,
                             ),
                           ],
                         ),
@@ -318,16 +321,16 @@ class _MyEstateScreenState extends State<MyEstateScreen>
                     shape: BoxShape.circle,
                     gradient: RadialGradient(
                       colors: [
-                        Color(0xFFFEF3C7),
-                        Color(0xFFF59E0B),
-                        Color(0xFFD97706),
+                        CupertinoColors.white,
+                        Color(0xFFD4D4D8),
+                        Color(0xFF1C1C1E),
                       ],
                     ),
                   ),
                   child: const Center(
                     child: Icon(
                       CupertinoIcons.sun_max_fill,
-                      color: Color(0xFF451A03),
+                      color: CupertinoColors.black,
                       size: 46,
                     ),
                   ),
@@ -410,13 +413,15 @@ class _MyEstateScreenState extends State<MyEstateScreen>
             ),
           ),
           const SizedBox(height: 16),
-          _buildProgressBar('Eclipse Points', '${state.eclipsePoints} / ${next.baseCostEP} EP', epProgress, const Color(0xFFF59E0B)),
+          _buildProgressBar('Eclipse Points', '${state.eclipsePoints} / ${next.baseCostEP} EP', epProgress, CupertinoColors.white),
           const SizedBox(height: 12),
-          _buildProgressBar('Call Points', '${state.callPoints} / ${next.requiredCP} CP', cpProgress, const Color(0xFF10B981)),
+          _buildProgressBar('Call Points', '${state.callPoints} / ${next.requiredCP} CP', cpProgress, const Color(0xFFD4D4D8)),
           const SizedBox(height: 18),
           SizedBox(
             width: double.infinity,
-            child: CupertinoButton.filled(
+            child: CupertinoButton(
+              color: canUpgrade ? CupertinoColors.white : const Color(0xFF27272A),
+              borderRadius: BorderRadius.circular(14),
               onPressed: canUpgrade
                   ? () {
                       final success = state.upgradeHouse();
@@ -443,6 +448,10 @@ class _MyEstateScreenState extends State<MyEstateScreen>
                 canUpgrade
                     ? 'Upgrade 3D Estate Now'
                     : 'Need More Points (Call or Forge)',
+                style: TextStyle(
+                  color: canUpgrade ? CupertinoColors.black : const Color(0xFF71717A),
+                  fontWeight: FontWeight.bold,
+                ),
               ),
             ),
           ),
@@ -467,7 +476,7 @@ class _MyEstateScreenState extends State<MyEstateScreen>
           borderRadius: BorderRadius.circular(4),
           child: Container(
             height: 7,
-            color: color.withValues(alpha: 0.15),
+            color: const Color(0xFF27272A),
             child: FractionallySizedBox(
               alignment: Alignment.centerLeft,
               widthFactor: progress,
@@ -491,7 +500,7 @@ class _MyEstateScreenState extends State<MyEstateScreen>
             style: TextStyle(
               fontSize: 11,
               fontWeight: FontWeight.bold,
-              color: EclipseTheme.textMuted,
+              color: EclipseTheme.textSecondary,
               letterSpacing: 0.8,
             ),
           ),
@@ -504,10 +513,13 @@ class _MyEstateScreenState extends State<MyEstateScreen>
                   Container(
                     padding: const EdgeInsets.all(6),
                     decoration: BoxDecoration(
-                      color: const Color(0xFF0284C7).withValues(alpha: 0.2),
+                      color: const Color(0xFF242426),
                       shape: BoxShape.circle,
+                      border: Border.all(
+                        color: CupertinoColors.white.withValues(alpha: 0.15),
+                      ),
                     ),
-                    child: Icon(a.icon, size: 14, color: const Color(0xFF38BDF8)),
+                    child: Icon(a.icon, size: 14, color: CupertinoColors.white),
                   ),
                   const SizedBox(width: 10),
                   Expanded(
@@ -526,7 +538,7 @@ class _MyEstateScreenState extends State<MyEstateScreen>
                           a.subtitle,
                           style: TextStyle(
                             fontSize: 11,
-                            color: EclipseTheme.textMuted,
+                            color: EclipseTheme.textSecondary,
                           ),
                         ),
                       ],

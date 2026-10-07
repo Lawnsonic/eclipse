@@ -57,7 +57,7 @@ class _ContactGroupsView extends StatelessWidget {
         return CupertinoPageScaffold(
           backgroundColor: EclipseTheme.background,
           navigationBar: CupertinoNavigationBar(
-            backgroundColor: const Color(0xFF0F172A).withValues(alpha: 0.9),
+            backgroundColor: const Color(0xFF0D0D0E).withValues(alpha: 0.95),
             border: Border(
               bottom: BorderSide(
                 color: CupertinoColors.white.withValues(alpha: 0.08),
@@ -66,7 +66,7 @@ class _ContactGroupsView extends StatelessWidget {
             middle: const Text(
               'Eclipse Realm',
               style: TextStyle(
-                color: CupertinoColors.white,
+                color: EclipseTheme.white,
                 fontWeight: FontWeight.bold,
                 letterSpacing: 0.5,
               ),
@@ -79,10 +79,10 @@ class _ContactGroupsView extends StatelessWidget {
                   child: Container(
                     padding: const EdgeInsets.symmetric(horizontal: 10, vertical: 5),
                     decoration: BoxDecoration(
-                      color: const Color(0xFFF59E0B).withValues(alpha: 0.2),
+                      color: const Color(0xFF1C1C1E),
                       borderRadius: BorderRadius.circular(12),
                       border: Border.all(
-                        color: const Color(0xFFF59E0B).withValues(alpha: 0.5),
+                        color: CupertinoColors.white.withValues(alpha: 0.2),
                       ),
                     ),
                     child: Row(
@@ -90,7 +90,7 @@ class _ContactGroupsView extends StatelessWidget {
                         const Icon(
                           CupertinoIcons.sparkles,
                           size: 13,
-                          color: Color(0xFFF59E0B),
+                          color: EclipseTheme.white,
                         ),
                         const SizedBox(width: 5),
                         Text(
@@ -98,7 +98,7 @@ class _ContactGroupsView extends StatelessWidget {
                           style: const TextStyle(
                             fontSize: 12,
                             fontWeight: FontWeight.bold,
-                            color: Color(0xFFF59E0B),
+                            color: EclipseTheme.white,
                           ),
                         ),
                       ],
@@ -109,10 +109,10 @@ class _ContactGroupsView extends StatelessWidget {
                 Container(
                   padding: const EdgeInsets.symmetric(horizontal: 10, vertical: 5),
                   decoration: BoxDecoration(
-                    color: const Color(0xFF10B981).withValues(alpha: 0.2),
+                    color: const Color(0xFF1C1C1E),
                     borderRadius: BorderRadius.circular(12),
                     border: Border.all(
-                      color: const Color(0xFF10B981).withValues(alpha: 0.5),
+                      color: CupertinoColors.white.withValues(alpha: 0.2),
                     ),
                   ),
                   child: Row(
@@ -120,7 +120,7 @@ class _ContactGroupsView extends StatelessWidget {
                       const Icon(
                         CupertinoIcons.phone_fill,
                         size: 13,
-                        color: Color(0xFF10B981),
+                        color: EclipseTheme.white,
                       ),
                       const SizedBox(width: 5),
                       Text(
@@ -128,7 +128,7 @@ class _ContactGroupsView extends StatelessWidget {
                         style: const TextStyle(
                           fontSize: 12,
                           fontWeight: FontWeight.bold,
-                          color: Color(0xFF10B981),
+                          color: EclipseTheme.white,
                         ),
                       ),
                     ],
@@ -148,16 +148,15 @@ class _ContactGroupsView extends StatelessWidget {
                   style: TextStyle(
                     fontSize: 11,
                     fontWeight: FontWeight.bold,
-                    color: EclipseTheme.textMuted,
+                    color: EclipseTheme.textSecondary,
                     letterSpacing: 1.0,
                   ),
                 ),
               ),
               // My 3D Estate Card
-              _buildSleekHubCard(
+              _buildMonochromeHubCard(
                 context: context,
                 icon: CupertinoIcons.cube_box_fill,
-                accentColor: state.currentTier.accentColor,
                 title: 'My 3D Estate & Forge',
                 subtitle: 'Lv ${state.playerHouseLevel} ${state.currentTier.title} • Tap to view 3D',
                 badgeText: '3D LIVE',
@@ -171,10 +170,9 @@ class _ContactGroupsView extends StatelessWidget {
               ),
               const SizedBox(height: 10),
               // 3D Map Region Card
-              _buildSleekHubCard(
+              _buildMonochromeHubCard(
                 context: context,
                 icon: CupertinoIcons.map_fill,
-                accentColor: const Color(0xFF0EA5E9),
                 title: '3D Realm Map & Plots',
                 subtitle: '${state.playerRealm} • Explore player houses',
                 badgeText: '5 BIOMES',
@@ -195,7 +193,7 @@ class _ContactGroupsView extends StatelessWidget {
                   style: TextStyle(
                     fontSize: 11,
                     fontWeight: FontWeight.bold,
-                    color: EclipseTheme.textMuted,
+                    color: EclipseTheme.textSecondary,
                     letterSpacing: 1.0,
                   ),
                 ),
@@ -233,10 +231,9 @@ class _ContactGroupsView extends StatelessWidget {
     );
   }
 
-  Widget _buildSleekHubCard({
+  Widget _buildMonochromeHubCard({
     required BuildContext context,
     required IconData icon,
-    required Color accentColor,
     required String title,
     required String subtitle,
     required String badgeText,
@@ -247,15 +244,15 @@ class _ContactGroupsView extends StatelessWidget {
       child: Container(
         padding: const EdgeInsets.all(14),
         decoration: BoxDecoration(
-          color: const Color(0xFF0F172A),
+          color: const Color(0xFF141416),
           borderRadius: BorderRadius.circular(18),
           border: Border.all(
-            color: accentColor.withValues(alpha: 0.35),
-            width: 1.2,
+            color: CupertinoColors.white.withValues(alpha: 0.12),
+            width: 1.0,
           ),
           boxShadow: [
             BoxShadow(
-              color: accentColor.withValues(alpha: 0.12),
+              color: CupertinoColors.black.withValues(alpha: 0.5),
               blurRadius: 16,
               offset: const Offset(0, 4),
             ),
@@ -267,13 +264,13 @@ class _ContactGroupsView extends StatelessWidget {
               width: 44,
               height: 44,
               decoration: BoxDecoration(
-                color: accentColor.withValues(alpha: 0.2),
+                color: const Color(0xFF222225),
                 borderRadius: BorderRadius.circular(12),
                 border: Border.all(
-                  color: accentColor.withValues(alpha: 0.4),
+                  color: CupertinoColors.white.withValues(alpha: 0.15),
                 ),
               ),
-              child: Icon(icon, color: accentColor, size: 22),
+              child: Icon(icon, color: EclipseTheme.white, size: 20),
             ),
             const SizedBox(width: 12),
             Expanded(
@@ -283,7 +280,7 @@ class _ContactGroupsView extends StatelessWidget {
                   Text(
                     title,
                     style: const TextStyle(
-                      color: CupertinoColors.white,
+                      color: EclipseTheme.white,
                       fontSize: 15,
                       fontWeight: FontWeight.bold,
                     ),
@@ -302,13 +299,16 @@ class _ContactGroupsView extends StatelessWidget {
             Container(
               padding: const EdgeInsets.symmetric(horizontal: 8, vertical: 4),
               decoration: BoxDecoration(
-                color: accentColor.withValues(alpha: 0.15),
+                color: const Color(0xFF242426),
                 borderRadius: BorderRadius.circular(8),
+                border: Border.all(
+                  color: CupertinoColors.white.withValues(alpha: 0.1),
+                ),
               ),
               child: Text(
                 badgeText,
-                style: TextStyle(
-                  color: accentColor,
+                style: const TextStyle(
+                  color: EclipseTheme.white,
                   fontSize: 10,
                   fontWeight: FontWeight.bold,
                 ),
@@ -344,17 +344,17 @@ class _ContactGroupsView extends StatelessWidget {
             width: 34,
             height: 34,
             decoration: BoxDecoration(
-              color: const Color(0xFF1E293B),
+              color: const Color(0xFF1E1E20),
               borderRadius: BorderRadius.circular(10),
             ),
-            child: Icon(icon, color: const Color(0xFF38BDF8), size: 18),
+            child: Icon(icon, color: EclipseTheme.white, size: 18),
           ),
           const SizedBox(width: 12),
           Expanded(
             child: Text(
               contactList.label,
               style: const TextStyle(
-                color: CupertinoColors.white,
+                color: EclipseTheme.white,
                 fontSize: 15,
                 fontWeight: FontWeight.w600,
               ),
@@ -363,7 +363,7 @@ class _ContactGroupsView extends StatelessWidget {
           Container(
             padding: const EdgeInsets.symmetric(horizontal: 9, vertical: 3),
             decoration: BoxDecoration(
-              color: const Color(0xFF1E293B),
+              color: const Color(0xFF1E1E20),
               borderRadius: BorderRadius.circular(10),
             ),
             child: Text(

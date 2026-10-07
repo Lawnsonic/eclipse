@@ -1,27 +1,37 @@
 import 'package:flutter/cupertino.dart';
 
+/// Luxury Monochrome Design System (Noir & Titanium / Crisp White).
+/// Based on Apple HIG and luxury minimalist interface principles:
+/// - Avoids rainbow color chaos in favor of sophisticated grayscale hierarchy.
+/// - Uses layered titanium depths (0xFF000000, 0xFF121212, 0xFF1C1C1E, 0xFF2C2C2E).
+/// - Crisp typography hierarchy (Primary: #FFFFFF, Secondary: #A1A1A6, Muted: #636366).
+/// - High-contrast subtle borders and frosted acrylic finishes.
 class EclipseTheme {
   // Backgrounds
-  static const Color background = Color(0xFF070B14);
-  static const Color surface = Color(0xFF0F172A);
-  static const Color surfaceLight = Color(0xFF1E293B);
-  static const Color cardGlass = Color(0xCC111C35);
-  static const Color cardBorder = Color(0x2694A3B8);
+  static const Color background = Color(0xFF000000);
+  static const Color surface = Color(0xFF121212);
+  static const Color surfaceElevated = Color(0xFF1C1C1E);
+  static const Color surfaceHighlight = Color(0xFF2C2C2E);
 
-  // Accents
-  static const Color solarGold = Color(0xFFF59E0B);
-  static const Color solarAmber = Color(0xFFD97706);
-  static const Color callGreen = Color(0xFF10B981);
-  static const Color cyberCyan = Color(0xFF06B6D4);
-  static const Color neonPink = Color(0xFFEC4899);
-  static const Color astralPurple = Color(0xFF8B5CF6);
+  // Cards & Frosted Glass
+  static const Color cardGlass = Color(0xF0141416);
+  static const Color cardBorder = Color(0x24FFFFFF); // 14% white border
+  static const Color cardBorderSubtle = Color(0x14FFFFFF); // 8% white border
+  static const Color cardBorderHighlight = Color(0x59FFFFFF); // 35% white border
 
-  // Typography
-  static const Color textPrimary = Color(0xFFF8FAFC);
-  static const Color textSecondary = Color(0xFF94A3B8);
-  static const Color textMuted = Color(0xFF64748B);
+  // Monochrome Accents
+  static const Color white = Color(0xFFFFFFFF);
+  static const Color platinum = Color(0xFFE5E5EA);
+  static const Color silver = Color(0xFFD1D1D6);
+  static const Color charcoal = Color(0xFF242426);
+  static const Color graphite = Color(0xFF1C1C1E);
 
-  // Box Decorations
+  // Typography Tokens
+  static const Color textPrimary = Color(0xFFFFFFFF);
+  static const Color textSecondary = Color(0xFFA1A1A6);
+  static const Color textMuted = Color(0xFF636366);
+
+  // Glassmorphic Card Decorations
   static BoxDecoration glassCardDecoration({Color? borderColor, double radius = 18}) {
     return BoxDecoration(
       color: cardGlass,
@@ -32,26 +42,37 @@ class EclipseTheme {
       ),
       boxShadow: [
         BoxShadow(
-          color: CupertinoColors.black.withValues(alpha: 0.35),
-          blurRadius: 16,
+          color: CupertinoColors.black.withValues(alpha: 0.6),
+          blurRadius: 18,
           offset: const Offset(0, 6),
         ),
       ],
     );
   }
 
-  static BoxDecoration glowCard({required Color glowColor, double radius = 18}) {
+  static BoxDecoration sleekPillDecoration({bool isActive = false, double radius = 12}) {
     return BoxDecoration(
-      color: cardGlass,
+      color: isActive ? surfaceHighlight : surfaceElevated,
       borderRadius: BorderRadius.circular(radius),
       border: Border.all(
-        color: glowColor.withValues(alpha: 0.4),
+        color: isActive ? cardBorderHighlight : cardBorder,
+        width: 1.0,
+      ),
+    );
+  }
+
+  static BoxDecoration glowCard({Color? glowColor, double radius = 18}) {
+    return BoxDecoration(
+      color: surface,
+      borderRadius: BorderRadius.circular(radius),
+      border: Border.all(
+        color: cardBorderHighlight,
         width: 1.2,
       ),
       boxShadow: [
         BoxShadow(
-          color: glowColor.withValues(alpha: 0.2),
-          blurRadius: 20,
+          color: CupertinoColors.white.withValues(alpha: 0.12),
+          blurRadius: 22,
           spreadRadius: 1,
           offset: const Offset(0, 4),
         ),

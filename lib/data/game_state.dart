@@ -90,16 +90,10 @@ class GameState extends ChangeNotifier {
 
   ContactEstate _generateDefaultEstate(Contact contact) {
     final colors = [
-      const Color(0xFF3B82F6),
-      const Color(0xFFEC4899),
-      const Color(0xFF10B981),
-      const Color(0xFFF59E0B),
-      const Color(0xFF14B8A6),
-      const Color(0xFF8B5CF6),
-      const Color(0xFF6366F1),
-      const Color(0xFF06B6D4),
-      const Color(0xFFF43F5E),
-      const Color(0xFF84CC16),
+      const Color(0xFF242426),
+      const Color(0xFF1C1C1E),
+      const Color(0xFF2C2C2E),
+      const Color(0xFF333336),
     ];
 
     final locations = [

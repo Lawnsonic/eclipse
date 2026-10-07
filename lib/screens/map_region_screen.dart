@@ -26,43 +26,43 @@ class RealmRegion {
   static const List<RealmRegion> all = [
     RealmRegion(
       id: 0,
-      name: 'Silicon Coast',
+      name: 'Titanium Coast',
       subtitle: 'Waterfront estates & coastal villas',
-      accentColor: Color(0xFF0EA5E9),
+      accentColor: Color(0xFFD1D1D6),
       icon: CupertinoIcons.wind,
-      terrainColor: Color(0xFF082F49),
+      terrainColor: Color(0xFF141416),
     ),
     RealmRegion(
       id: 1,
-      name: 'Avalon Ridge',
+      name: 'Granite Ridge',
       subtitle: 'Highland hills, mansions & chateaus',
-      accentColor: Color(0xFFF59E0B),
+      accentColor: Color(0xFFE5E5EA),
       icon: CupertinoIcons.sparkles,
-      terrainColor: Color(0xFF451A03),
+      terrainColor: Color(0xFF18181B),
     ),
     RealmRegion(
       id: 2,
-      name: 'Cyber Apex District',
-      subtitle: 'Neon skyline, cribs & citadels',
-      accentColor: Color(0xFFEC4899),
+      name: 'Obsidian District',
+      subtitle: 'Monochrome skyline, cribs & citadels',
+      accentColor: Color(0xFFFFFFFF),
       icon: CupertinoIcons.cube_fill,
-      terrainColor: Color(0xFF3B0764),
+      terrainColor: Color(0xFF141416),
     ),
     RealmRegion(
       id: 3,
-      name: 'Redwood Glade',
+      name: 'Silver Glade',
       subtitle: 'Lush pines, cabins & starter shelters',
-      accentColor: Color(0xFF10B981),
+      accentColor: Color(0xFFD4D4D8),
       icon: CupertinoIcons.tree,
-      terrainColor: Color(0xFF064E3B),
+      terrainColor: Color(0xFF18181B),
     ),
     RealmRegion(
       id: 4,
       name: 'Celestial Orbit',
       subtitle: 'Zero-gravity floating sky sanctuaries',
-      accentColor: Color(0xFFF43F5E),
+      accentColor: Color(0xFFFFFFFF),
       icon: CupertinoIcons.sun_max_fill,
-      terrainColor: Color(0xFF4C0519),
+      terrainColor: Color(0xFF101012),
     ),
   ];
 }
@@ -134,7 +134,7 @@ class _MapRegionScreenState extends State<MapRegionScreen> {
         return Container(
           height: MediaQuery.of(context).size.height * 0.82,
           decoration: const BoxDecoration(
-            color: Color(0xFF0F172A),
+            color: Color(0xFF141416),
             borderRadius: BorderRadius.vertical(top: Radius.circular(24)),
           ),
           child: Column(
@@ -144,7 +144,7 @@ class _MapRegionScreenState extends State<MapRegionScreen> {
                 width: 44,
                 height: 5,
                 decoration: BoxDecoration(
-                  color: const Color(0xFF334155),
+                  color: const Color(0xFF27272A),
                   borderRadius: BorderRadius.circular(2.5),
                 ),
               ),
@@ -166,8 +166,8 @@ class _MapRegionScreenState extends State<MapRegionScreen> {
                         ),
                         Text(
                           '${tier.title} • $location',
-                          style: TextStyle(
-                            color: tier.accentColor,
+                          style: const TextStyle(
+                            color: Color(0xFFA1A1A6),
                             fontSize: 13,
                             fontWeight: FontWeight.w600,
                           ),
@@ -176,7 +176,7 @@ class _MapRegionScreenState extends State<MapRegionScreen> {
                     ),
                     CupertinoButton(
                       padding: EdgeInsets.zero,
-                      child: const Icon(CupertinoIcons.clear_circled_solid, color: Color(0xFF64748B)),
+                      child: const Icon(CupertinoIcons.clear_circled_solid, color: Color(0xFF71717A)),
                       onPressed: () => Navigator.of(ctx).pop(),
                     ),
                   ],
@@ -191,11 +191,13 @@ class _MapRegionScreenState extends State<MapRegionScreen> {
                     const SizedBox(height: 14),
                     Text(
                       tier.description,
-                      style: const TextStyle(color: Color(0xFF94A3B8), fontSize: 13),
+                      style: const TextStyle(color: Color(0xFFA1A1A6), fontSize: 13),
                     ),
                     const SizedBox(height: 16),
                     if (!isPlayer) ...[
-                      CupertinoButton.filled(
+                      CupertinoButton(
+                        color: const Color(0xFF27272A),
+                        borderRadius: BorderRadius.circular(14),
                         onPressed: contact!.hasBeenBlessedToday
                             ? null
                             : () {
@@ -206,6 +208,10 @@ class _MapRegionScreenState extends State<MapRegionScreen> {
                           contact.hasBeenBlessedToday
                               ? 'Blessed Today (+45 EP Claimed)'
                               : 'Send Solar Blessing (+45 EP)',
+                          style: const TextStyle(
+                            color: CupertinoColors.white,
+                            fontWeight: FontWeight.bold,
+                          ),
                         ),
                       ),
                       const SizedBox(height: 10),
@@ -213,7 +219,8 @@ class _MapRegionScreenState extends State<MapRegionScreen> {
                         children: [
                           Expanded(
                             child: CupertinoButton(
-                              color: const Color(0xFF10B981),
+                              color: const Color(0xFF1F1F22),
+                              borderRadius: BorderRadius.circular(14),
                               onPressed: () {
                                 Navigator.of(ctx).pop();
                                 Navigator.of(context).push(
@@ -225,9 +232,9 @@ class _MapRegionScreenState extends State<MapRegionScreen> {
                               child: const Row(
                                 mainAxisAlignment: MainAxisAlignment.center,
                                 children: [
-                                  Icon(CupertinoIcons.phone_fill, size: 16),
+                                  Icon(CupertinoIcons.phone_fill, size: 16, color: CupertinoColors.white),
                                   SizedBox(width: 6),
-                                  Text('Call (CP)'),
+                                  Text('Call (CP)', style: TextStyle(color: CupertinoColors.white)),
                                 ],
                               ),
                             ),
@@ -235,7 +242,8 @@ class _MapRegionScreenState extends State<MapRegionScreen> {
                           const SizedBox(width: 10),
                           Expanded(
                             child: CupertinoButton(
-                              color: const Color(0xFF0284C7),
+                              color: const Color(0xFF1F1F22),
+                              borderRadius: BorderRadius.circular(14),
                               onPressed: () {
                                 Navigator.of(ctx).pop();
                                 Navigator.of(context).push(
@@ -247,9 +255,9 @@ class _MapRegionScreenState extends State<MapRegionScreen> {
                               child: const Row(
                                 mainAxisAlignment: MainAxisAlignment.center,
                                 children: [
-                                  Icon(CupertinoIcons.chat_bubble_fill, size: 16),
+                                  Icon(CupertinoIcons.chat_bubble_fill, size: 16, color: CupertinoColors.white),
                                   SizedBox(width: 6),
-                                  Text('Chat'),
+                                  Text('Chat', style: TextStyle(color: CupertinoColors.white)),
                                 ],
                               ),
                             ),
@@ -260,12 +268,15 @@ class _MapRegionScreenState extends State<MapRegionScreen> {
                       Container(
                         padding: const EdgeInsets.all(14),
                         decoration: BoxDecoration(
-                          color: const Color(0xFF1E293B),
+                          color: const Color(0xFF1C1C1E),
                           borderRadius: BorderRadius.circular(16),
+                          border: Border.all(
+                            color: CupertinoColors.white.withValues(alpha: 0.12),
+                          ),
                         ),
                         child: Row(
                           children: [
-                            const Icon(CupertinoIcons.checkmark_seal_fill, color: Color(0xFFF59E0B)),
+                            const Icon(CupertinoIcons.checkmark_seal_fill, color: CupertinoColors.white),
                             const SizedBox(width: 10),
                             Expanded(
                               child: Text(
@@ -300,7 +311,12 @@ class _MapRegionScreenState extends State<MapRegionScreen> {
         return CupertinoPageScaffold(
           backgroundColor: EclipseTheme.background,
           navigationBar: CupertinoNavigationBar(
-            backgroundColor: const Color(0xFF0F172A).withValues(alpha: 0.9),
+            backgroundColor: const Color(0xFF0D0D0E).withValues(alpha: 0.95),
+            border: Border(
+              bottom: BorderSide(
+                color: CupertinoColors.white.withValues(alpha: 0.08),
+              ),
+            ),
             middle: const Text(
               '3D Realm Map',
               style: TextStyle(color: CupertinoColors.white, fontWeight: FontWeight.bold),
@@ -309,18 +325,31 @@ class _MapRegionScreenState extends State<MapRegionScreen> {
               mainAxisSize: MainAxisSize.min,
               children: [
                 Container(
-                  padding: const EdgeInsets.symmetric(horizontal: 8, vertical: 4),
+                  padding: const EdgeInsets.symmetric(horizontal: 10, vertical: 5),
                   decoration: BoxDecoration(
-                    color: const Color(0xFFF59E0B).withValues(alpha: 0.15),
-                    borderRadius: BorderRadius.circular(10),
-                  ),
-                  child: Text(
-                    '${state.eclipsePoints} EP',
-                    style: const TextStyle(
-                      color: Color(0xFFF59E0B),
-                      fontSize: 12,
-                      fontWeight: FontWeight.bold,
+                    color: const Color(0xFF1C1C1E),
+                    borderRadius: BorderRadius.circular(12),
+                    border: Border.all(
+                      color: CupertinoColors.white.withValues(alpha: 0.2),
                     ),
+                  ),
+                  child: Row(
+                    children: [
+                      const Icon(
+                        CupertinoIcons.sparkles,
+                        size: 13,
+                        color: EclipseTheme.white,
+                      ),
+                      const SizedBox(width: 5),
+                      Text(
+                        '${state.eclipsePoints} EP',
+                        style: const TextStyle(
+                          color: EclipseTheme.white,
+                          fontSize: 12,
+                          fontWeight: FontWeight.bold,
+                        ),
+                      ),
+                    ],
                   ),
                 ),
               ],
@@ -332,7 +361,7 @@ class _MapRegionScreenState extends State<MapRegionScreen> {
                 // Horizontal Sleek Region Selector Bar
                 Container(
                   padding: const EdgeInsets.symmetric(vertical: 10, horizontal: 12),
-                  color: const Color(0xFF0B1120),
+                  color: const Color(0xFF121212),
                   child: SingleChildScrollView(
                     scrollDirection: Axis.horizontal,
                     child: Row(
@@ -346,16 +375,16 @@ class _MapRegionScreenState extends State<MapRegionScreen> {
                 // Region Info Banner
                 Container(
                   padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 8),
-                  color: currentRegion.terrainColor.withValues(alpha: 0.35),
+                  color: currentRegion.terrainColor,
                   child: Row(
                     children: [
-                      Icon(currentRegion.icon, color: currentRegion.accentColor, size: 16),
+                      Icon(currentRegion.icon, color: EclipseTheme.white, size: 16),
                       const SizedBox(width: 8),
                       Expanded(
                         child: Text(
                           '${currentRegion.name} • ${currentRegion.subtitle}',
-                          style: TextStyle(
-                            color: currentRegion.accentColor,
+                          style: const TextStyle(
+                            color: EclipseTheme.white,
                             fontSize: 12,
                             fontWeight: FontWeight.w600,
                           ),
@@ -364,7 +393,7 @@ class _MapRegionScreenState extends State<MapRegionScreen> {
                       Text(
                         '${regionContacts.length + 1} Plots',
                         style: const TextStyle(
-                          color: Color(0xFF94A3B8),
+                          color: Color(0xFFA1A1A6),
                           fontSize: 11,
                         ),
                       ),
@@ -414,12 +443,12 @@ class _MapRegionScreenState extends State<MapRegionScreen> {
         padding: const EdgeInsets.symmetric(horizontal: 14, vertical: 7),
         decoration: BoxDecoration(
           color: isSelected
-              ? r.accentColor.withValues(alpha: 0.25)
-              : const Color(0xFF1E293B).withValues(alpha: 0.5),
+              ? const Color(0xFF27272A)
+              : const Color(0xFF18181B),
           borderRadius: BorderRadius.circular(14),
           border: Border.all(
-            color: isSelected ? r.accentColor : const Color(0x2294A3B8),
-            width: 1.2,
+            color: isSelected ? CupertinoColors.white.withValues(alpha: 0.4) : const Color(0x18FFFFFF),
+            width: 1.0,
           ),
         ),
         child: Row(
@@ -428,13 +457,13 @@ class _MapRegionScreenState extends State<MapRegionScreen> {
             Icon(
               r.icon,
               size: 13,
-              color: isSelected ? r.accentColor : const Color(0xFF94A3B8),
+              color: isSelected ? CupertinoColors.white : const Color(0xFFA1A1A6),
             ),
             const SizedBox(width: 6),
             Text(
               r.name,
               style: TextStyle(
-                color: isSelected ? CupertinoColors.white : const Color(0xFF94A3B8),
+                color: isSelected ? CupertinoColors.white : const Color(0xFFA1A1A6),
                 fontSize: 12,
                 fontWeight: isSelected ? FontWeight.bold : FontWeight.w500,
               ),
@@ -451,12 +480,12 @@ class _MapRegionScreenState extends State<MapRegionScreen> {
       onTap: () => _onPlotTapped(context, null, true),
       child: Container(
         decoration: BoxDecoration(
-          color: const Color(0xFF111E38),
+          color: const Color(0xFF18181B),
           borderRadius: BorderRadius.circular(18),
-          border: Border.all(color: const Color(0xFFF59E0B), width: 1.5),
+          border: Border.all(color: CupertinoColors.white, width: 1.2),
           boxShadow: [
             BoxShadow(
-              color: const Color(0xFFF59E0B).withValues(alpha: 0.25),
+              color: CupertinoColors.white.withValues(alpha: 0.1),
               blurRadius: 14,
               offset: const Offset(0, 4),
             ),
@@ -467,20 +496,21 @@ class _MapRegionScreenState extends State<MapRegionScreen> {
             Container(
               padding: const EdgeInsets.symmetric(horizontal: 10, vertical: 5),
               decoration: const BoxDecoration(
-                color: Color(0xFFF59E0B),
+                color: Color(0xFF27272A),
                 borderRadius: BorderRadius.vertical(top: Radius.circular(16)),
               ),
               child: const Row(
                 mainAxisAlignment: MainAxisAlignment.center,
                 children: [
-                  Icon(CupertinoIcons.star_fill, size: 11, color: Color(0xFF451A03)),
+                  Icon(CupertinoIcons.star_fill, size: 11, color: CupertinoColors.white),
                   SizedBox(width: 4),
                   Text(
                     'YOUR ESTATE',
                     style: TextStyle(
-                      color: Color(0xFF451A03),
+                      color: CupertinoColors.white,
                       fontSize: 10,
                       fontWeight: FontWeight.bold,
+                      letterSpacing: 0.5,
                     ),
                   ),
                 ],
@@ -507,7 +537,7 @@ class _MapRegionScreenState extends State<MapRegionScreen> {
                   ),
                   Text(
                     '+${tier.dailyIncomeEP} EP/day',
-                    style: const TextStyle(color: Color(0xFFF59E0B), fontSize: 10),
+                    style: const TextStyle(color: Color(0xFFA1A1A6), fontSize: 10),
                   ),
                 ],
               ),
@@ -524,10 +554,10 @@ class _MapRegionScreenState extends State<MapRegionScreen> {
       onTap: () => _onPlotTapped(context, contact, false),
       child: Container(
         decoration: BoxDecoration(
-          color: const Color(0xFF0F172A),
+          color: const Color(0xFF141416),
           borderRadius: BorderRadius.circular(18),
           border: Border.all(
-            color: tier.accentColor.withValues(alpha: 0.4),
+            color: CupertinoColors.white.withValues(alpha: 0.12),
           ),
         ),
         child: Column(
@@ -542,6 +572,9 @@ class _MapRegionScreenState extends State<MapRegionScreen> {
                     decoration: BoxDecoration(
                       color: contact.avatarColor,
                       shape: BoxShape.circle,
+                      border: Border.all(
+                        color: CupertinoColors.white.withValues(alpha: 0.15),
+                      ),
                     ),
                     child: Center(
                       child: Text(
@@ -578,13 +611,13 @@ class _MapRegionScreenState extends State<MapRegionScreen> {
                 children: [
                   Text(
                     'Lv ${contact.houseLevel} ${tier.category}',
-                    style: TextStyle(
-                      color: tier.accentColor,
+                    style: const TextStyle(
+                      color: Color(0xFFA1A1A6),
                       fontSize: 10,
                       fontWeight: FontWeight.bold,
                     ),
                   ),
-                  const Icon(CupertinoIcons.chevron_right, size: 10, color: Color(0xFF64748B)),
+                  const Icon(CupertinoIcons.chevron_right, size: 10, color: Color(0xFF71717A)),
                 ],
               ),
             ),
@@ -599,10 +632,10 @@ class _MapRegionScreenState extends State<MapRegionScreen> {
       onTap: () => _onPlotTapped(context, null, false),
       child: Container(
         decoration: BoxDecoration(
-          color: const Color(0xFF0B132B).withValues(alpha: 0.5),
+          color: const Color(0xFF141416).withValues(alpha: 0.6),
           borderRadius: BorderRadius.circular(18),
           border: Border.all(
-            color: const Color(0x3394A3B8),
+            color: const Color(0x18FFFFFF),
             style: BorderStyle.solid,
           ),
         ),
@@ -613,13 +646,13 @@ class _MapRegionScreenState extends State<MapRegionScreen> {
               Container(
                 padding: const EdgeInsets.all(10),
                 decoration: BoxDecoration(
-                  color: const Color(0xFF1E293B),
+                  color: const Color(0xFF1F1F22),
                   shape: BoxShape.circle,
-                  border: Border.all(color: const Color(0x4494A3B8)),
+                  border: Border.all(color: const Color(0x28FFFFFF)),
                 ),
                 child: const Icon(
                   CupertinoIcons.add,
-                  color: Color(0xFF94A3B8),
+                  color: CupertinoColors.white,
                   size: 20,
                 ),
               ),
@@ -627,7 +660,7 @@ class _MapRegionScreenState extends State<MapRegionScreen> {
               const Text(
                 'Vacant Plot',
                 style: TextStyle(
-                  color: Color(0xFF94A3B8),
+                  color: CupertinoColors.white,
                   fontSize: 12,
                   fontWeight: FontWeight.w600,
                 ),
@@ -636,7 +669,7 @@ class _MapRegionScreenState extends State<MapRegionScreen> {
               const Text(
                 'Tap to Relocate Here',
                 style: TextStyle(
-                  color: Color(0xFF64748B),
+                  color: Color(0xFF71717A),
                   fontSize: 10,
                 ),
               ),

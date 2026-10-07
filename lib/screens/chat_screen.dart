@@ -118,7 +118,7 @@ class _ChatScreenState extends State<ChatScreen> {
     return CupertinoPageScaffold(
       backgroundColor: EclipseTheme.background,
       navigationBar: CupertinoNavigationBar(
-        backgroundColor: const Color(0xFF0F172A).withValues(alpha: 0.9),
+        backgroundColor: const Color(0xFF0D0D0E).withValues(alpha: 0.95),
         border: Border(
           bottom: BorderSide(
             color: CupertinoColors.white.withValues(alpha: 0.08),
@@ -133,6 +133,9 @@ class _ChatScreenState extends State<ChatScreen> {
               decoration: BoxDecoration(
                 color: widget.contact.avatarColor,
                 shape: BoxShape.circle,
+                border: Border.all(
+                  color: CupertinoColors.white.withValues(alpha: 0.2),
+                ),
               ),
               child: Center(
                 child: Text(
@@ -160,9 +163,9 @@ class _ChatScreenState extends State<ChatScreen> {
                 ),
                 Text(
                   '3D Lv ${widget.contact.houseLevel} ${widget.contact.houseTier.title}',
-                  style: TextStyle(
+                  style: const TextStyle(
                     fontSize: 10,
-                    color: widget.contact.houseTier.accentColor,
+                    color: Color(0xFFA1A1A6),
                     fontWeight: FontWeight.w600,
                   ),
                 ),
@@ -196,17 +199,17 @@ class _ChatScreenState extends State<ChatScreen> {
                       ),
                       decoration: BoxDecoration(
                         color: msg.isMe
-                            ? const Color(0xFF0284C7)
-                            : const Color(0xFF1E293B),
+                            ? const Color(0xFF27272A)
+                            : const Color(0xFF141416),
                         borderRadius: BorderRadius.circular(16),
                         border: Border.all(
                           color: msg.isMe
-                              ? const Color(0xFF38BDF8).withValues(alpha: 0.4)
-                              : const Color(0xFF334155),
+                              ? CupertinoColors.white.withValues(alpha: 0.2)
+                              : CupertinoColors.white.withValues(alpha: 0.08),
                         ),
                         boxShadow: [
                           BoxShadow(
-                            color: CupertinoColors.black.withValues(alpha: 0.2),
+                            color: CupertinoColors.black.withValues(alpha: 0.3),
                             blurRadius: 6,
                             offset: const Offset(0, 2),
                           ),
@@ -226,7 +229,7 @@ class _ChatScreenState extends State<ChatScreen> {
             ),
             Container(
               padding: const EdgeInsets.symmetric(horizontal: 12, vertical: 6),
-              color: const Color(0xFF0F172A),
+              color: const Color(0xFF121212),
               child: SingleChildScrollView(
                 scrollDirection: Axis.horizontal,
                 child: Row(
@@ -252,7 +255,7 @@ class _ChatScreenState extends State<ChatScreen> {
             Container(
               padding: const EdgeInsets.symmetric(horizontal: 12, vertical: 10),
               decoration: BoxDecoration(
-                color: const Color(0xFF0F172A),
+                color: const Color(0xFF0D0D0E),
                 border: Border(
                   top: BorderSide(
                     color: CupertinoColors.white.withValues(alpha: 0.08),
@@ -266,15 +269,17 @@ class _ChatScreenState extends State<ChatScreen> {
                       controller: _textController,
                       placeholder: 'Message ${widget.contact.firstName}...',
                       style: const TextStyle(color: CupertinoColors.white),
-                      placeholderStyle: const TextStyle(color: Color(0xFF64748B)),
+                      placeholderStyle: const TextStyle(color: Color(0xFF71717A)),
                       padding: const EdgeInsets.symmetric(
                         horizontal: 14,
                         vertical: 10,
                       ),
                       decoration: BoxDecoration(
-                        color: const Color(0xFF1E293B),
+                        color: const Color(0xFF1C1C1E),
                         borderRadius: BorderRadius.circular(20),
-                        border: Border.all(color: const Color(0xFF334155)),
+                        border: Border.all(
+                          color: CupertinoColors.white.withValues(alpha: 0.12),
+                        ),
                       ),
                       onSubmitted: (_) => _sendMessage(),
                     ),
@@ -287,12 +292,12 @@ class _ChatScreenState extends State<ChatScreen> {
                       width: 38,
                       height: 38,
                       decoration: const BoxDecoration(
-                        color: Color(0xFF0284C7),
+                        color: CupertinoColors.white,
                         shape: BoxShape.circle,
                       ),
                       child: const Icon(
                         CupertinoIcons.arrow_up,
-                        color: CupertinoColors.white,
+                        color: CupertinoColors.black,
                         size: 20,
                       ),
                     ),
@@ -320,16 +325,16 @@ class _QuickActionChip extends StatelessWidget {
       child: Container(
         padding: const EdgeInsets.symmetric(horizontal: 10, vertical: 6),
         decoration: BoxDecoration(
-          color: const Color(0xFF0284C7).withValues(alpha: 0.15),
+          color: const Color(0xFF1C1C1E),
           borderRadius: BorderRadius.circular(14),
           border: Border.all(
-            color: const Color(0xFF0284C7).withValues(alpha: 0.4),
+            color: CupertinoColors.white.withValues(alpha: 0.15),
           ),
         ),
         child: Text(
           label,
           style: const TextStyle(
-            color: Color(0xFF38BDF8),
+            color: CupertinoColors.white,
             fontSize: 12,
             fontWeight: FontWeight.w600,
           ),

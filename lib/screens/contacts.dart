@@ -46,7 +46,7 @@ class _ContactListView extends StatelessWidget {
               return CustomScrollView(
                 slivers: [
                   CupertinoSliverNavigationBar(
-                    backgroundColor: const Color(0xFF0F172A).withValues(alpha: 0.9),
+                    backgroundColor: const Color(0xFF0D0D0E).withValues(alpha: 0.95),
                     border: Border(
                       bottom: BorderSide(
                         color: CupertinoColors.white.withValues(alpha: 0.08),
@@ -55,8 +55,9 @@ class _ContactListView extends StatelessWidget {
                     largeTitle: Text(
                       contactList.title,
                       style: const TextStyle(
-                        color: CupertinoColors.white,
+                        color: EclipseTheme.white,
                         fontWeight: FontWeight.bold,
+                        letterSpacing: -0.5,
                       ),
                     ),
                     automaticallyImplyLeading: automaticallyImplyLeading,
@@ -68,10 +69,10 @@ class _ContactListView extends StatelessWidget {
                           child: Container(
                             padding: const EdgeInsets.symmetric(horizontal: 10, vertical: 5),
                             decoration: BoxDecoration(
-                              color: const Color(0xFFF59E0B).withValues(alpha: 0.2),
+                              color: const Color(0xFF1C1C1E),
                               borderRadius: BorderRadius.circular(12),
                               border: Border.all(
-                                color: const Color(0xFFF59E0B).withValues(alpha: 0.5),
+                                color: CupertinoColors.white.withValues(alpha: 0.2),
                               ),
                             ),
                             child: Row(
@@ -79,15 +80,15 @@ class _ContactListView extends StatelessWidget {
                                 const Icon(
                                   CupertinoIcons.sparkles,
                                   size: 13,
-                                  color: Color(0xFFF59E0B),
+                                  color: EclipseTheme.white,
                                 ),
-                                const SizedBox(width: 4),
+                                const SizedBox(width: 5),
                                 Text(
                                   '${state.eclipsePoints} EP',
                                   style: const TextStyle(
                                     fontSize: 12,
                                     fontWeight: FontWeight.bold,
-                                    color: Color(0xFFF59E0B),
+                                    color: EclipseTheme.white,
                                   ),
                                 ),
                               ],
@@ -98,10 +99,10 @@ class _ContactListView extends StatelessWidget {
                         Container(
                           padding: const EdgeInsets.symmetric(horizontal: 10, vertical: 5),
                           decoration: BoxDecoration(
-                            color: const Color(0xFF10B981).withValues(alpha: 0.2),
+                            color: const Color(0xFF1C1C1E),
                             borderRadius: BorderRadius.circular(12),
                             border: Border.all(
-                              color: const Color(0xFF10B981).withValues(alpha: 0.5),
+                              color: CupertinoColors.white.withValues(alpha: 0.2),
                             ),
                           ),
                           child: Row(
@@ -109,15 +110,15 @@ class _ContactListView extends StatelessWidget {
                               const Icon(
                                 CupertinoIcons.phone_fill,
                                 size: 13,
-                                color: Color(0xFF10B981),
+                                color: EclipseTheme.white,
                               ),
-                              const SizedBox(width: 4),
+                              const SizedBox(width: 5),
                               Text(
                                 '${state.callPoints} CP',
                                 style: const TextStyle(
                                   fontSize: 12,
                                   fontWeight: FontWeight.bold,
-                                  color: Color(0xFF10B981),
+                                  color: EclipseTheme.white,
                                 ),
                               ),
                             ],
@@ -131,16 +132,18 @@ class _ContactListView extends StatelessWidget {
                       padding: const EdgeInsets.fromLTRB(16, 14, 16, 6),
                       child: Container(
                         decoration: BoxDecoration(
-                          color: const Color(0xFF0F172A),
-                          borderRadius: BorderRadius.circular(16),
-                          border: Border.all(color: EclipseTheme.cardBorder),
+                          color: const Color(0xFF141416),
+                          borderRadius: BorderRadius.circular(14),
+                          border: Border.all(
+                            color: CupertinoColors.white.withValues(alpha: 0.1),
+                          ),
                         ),
                         child: CupertinoSearchTextField(
                           placeholder: 'Search contacts & estate houses...',
-                          style: const TextStyle(color: CupertinoColors.white),
-                          placeholderStyle: const TextStyle(color: Color(0xFF64748B)),
+                          style: const TextStyle(color: EclipseTheme.white),
+                          placeholderStyle: const TextStyle(color: EclipseTheme.textMuted),
                           padding: const EdgeInsets.symmetric(horizontal: 14, vertical: 11),
-                          suffixIcon: const Icon(CupertinoIcons.mic_fill, color: Color(0xFF94A3B8)),
+                          suffixIcon: const Icon(CupertinoIcons.mic_fill, color: EclipseTheme.textSecondary),
                           suffixMode: OverlayVisibilityMode.always,
                         ),
                       ),
@@ -191,7 +194,7 @@ class ContactListSection extends StatelessWidget {
             child: Text(
               lastInitial,
               style: const TextStyle(
-                color: Color(0xFF64748B),
+                color: EclipseTheme.textSecondary,
                 fontSize: 13,
                 fontWeight: FontWeight.bold,
                 letterSpacing: 0.5,
@@ -199,16 +202,16 @@ class ContactListSection extends StatelessWidget {
             ),
           ),
           Container(
-            decoration: EclipseTheme.glassCardDecoration(radius: 18),
+            decoration: EclipseTheme.glassCardDecoration(radius: 16),
             child: Column(
               children: [
                 for (int i = 0; i < contacts.length; i++) ...[
-                  _SleekContactTile(contact: contacts[i]),
+                  _MonochromeContactTile(contact: contacts[i]),
                   if (i < contacts.length - 1)
                     Container(
                       height: 1,
                       margin: const EdgeInsets.only(left: 64),
-                      color: CupertinoColors.white.withValues(alpha: 0.05),
+                      color: CupertinoColors.white.withValues(alpha: 0.06),
                     ),
                 ],
               ],
@@ -220,8 +223,8 @@ class ContactListSection extends StatelessWidget {
   }
 }
 
-class _SleekContactTile extends StatelessWidget {
-  const _SleekContactTile({required this.contact});
+class _MonochromeContactTile extends StatelessWidget {
+  const _MonochromeContactTile({required this.contact});
 
   final Contact contact;
 
@@ -236,38 +239,32 @@ class _SleekContactTile extends StatelessWidget {
       },
       child: Row(
         children: [
-          // Gradient-ring avatar
+          // Sleek Monochrome Titanium Avatar
           Container(
             width: 44,
             height: 44,
             decoration: BoxDecoration(
-              gradient: LinearGradient(
-                colors: [
-                  contact.avatarColor,
-                  contact.avatarColor.withValues(alpha: 0.7),
-                ],
-              ),
+              color: const Color(0xFF222225),
               shape: BoxShape.circle,
-              boxShadow: [
-                BoxShadow(
-                  color: contact.avatarColor.withValues(alpha: 0.3),
-                  blurRadius: 8,
-                ),
-              ],
+              border: Border.all(
+                color: CupertinoColors.white.withValues(alpha: 0.15),
+                width: 1.2,
+              ),
             ),
             child: Center(
               child: Text(
                 contact.initials,
                 style: const TextStyle(
-                  color: CupertinoColors.white,
+                  color: EclipseTheme.white,
                   fontWeight: FontWeight.bold,
                   fontSize: 15,
+                  letterSpacing: 0.5,
                 ),
               ),
             ),
           ),
-          const SizedBox(width: 12),
-          // Name and 3D tier badge
+          const SizedBox(width: 14),
+          // Name & Monochrome Tier Subtitle
           Expanded(
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.start,
@@ -276,7 +273,7 @@ class _SleekContactTile extends StatelessWidget {
                 Text(
                   contact.fullName,
                   style: const TextStyle(
-                    color: CupertinoColors.white,
+                    color: EclipseTheme.white,
                     fontWeight: FontWeight.w600,
                     fontSize: 15,
                   ),
@@ -284,14 +281,18 @@ class _SleekContactTile extends StatelessWidget {
                 const SizedBox(height: 3),
                 Row(
                   children: [
-                    Icon(CupertinoIcons.house_fill, size: 12, color: tier.accentColor),
-                    const SizedBox(width: 4),
+                    const Icon(
+                      CupertinoIcons.house_fill,
+                      size: 12,
+                      color: EclipseTheme.silver,
+                    ),
+                    const SizedBox(width: 5),
                     Text(
-                      'Lv ${contact.houseLevel} ${tier.title}',
-                      style: TextStyle(
-                        color: tier.accentColor,
+                      'Lv ${contact.houseLevel} • ${tier.title}',
+                      style: const TextStyle(
+                        color: EclipseTheme.textSecondary,
                         fontSize: 12,
-                        fontWeight: FontWeight.w600,
+                        fontWeight: FontWeight.w500,
                       ),
                     ),
                   ],
@@ -299,12 +300,12 @@ class _SleekContactTile extends StatelessWidget {
               ],
             ),
           ),
-          // Micro Action Buttons
+          // Sleek Monochrome Micro Action Buttons
           Row(
             mainAxisSize: MainAxisSize.min,
             children: [
               CupertinoButton(
-                padding: const EdgeInsets.all(6),
+                padding: const EdgeInsets.all(5),
                 onPressed: () {
                   Navigator.of(context).push(
                     CupertinoPageRoute<void>(
@@ -313,24 +314,24 @@ class _SleekContactTile extends StatelessWidget {
                   );
                 },
                 child: Container(
-                  width: 32,
-                  height: 32,
+                  width: 34,
+                  height: 34,
                   decoration: BoxDecoration(
-                    color: const Color(0xFF10B981).withValues(alpha: 0.18),
+                    color: const Color(0xFF202022),
                     shape: BoxShape.circle,
                     border: Border.all(
-                      color: const Color(0xFF10B981).withValues(alpha: 0.35),
+                      color: CupertinoColors.white.withValues(alpha: 0.14),
                     ),
                   ),
                   child: const Icon(
                     CupertinoIcons.phone_fill,
-                    color: Color(0xFF10B981),
+                    color: EclipseTheme.white,
                     size: 15,
                   ),
                 ),
               ),
               CupertinoButton(
-                padding: const EdgeInsets.all(6),
+                padding: const EdgeInsets.all(5),
                 onPressed: () {
                   Navigator.of(context).push(
                     CupertinoPageRoute<void>(
@@ -339,48 +340,48 @@ class _SleekContactTile extends StatelessWidget {
                   );
                 },
                 child: Container(
-                  width: 32,
-                  height: 32,
+                  width: 34,
+                  height: 34,
                   decoration: BoxDecoration(
-                    color: const Color(0xFF0284C7).withValues(alpha: 0.18),
+                    color: const Color(0xFF202022),
                     shape: BoxShape.circle,
                     border: Border.all(
-                      color: const Color(0xFF0284C7).withValues(alpha: 0.35),
+                      color: CupertinoColors.white.withValues(alpha: 0.14),
                     ),
                   ),
                   child: const Icon(
                     CupertinoIcons.chat_bubble_fill,
-                    color: Color(0xFF0284C7),
+                    color: EclipseTheme.white,
                     size: 15,
                   ),
                 ),
               ),
               CupertinoButton(
-                padding: const EdgeInsets.all(6),
+                padding: const EdgeInsets.all(5),
                 onPressed: () {
                   HouseDetailSheet.show(context, contact: contact);
                 },
                 child: Container(
-                  padding: const EdgeInsets.symmetric(horizontal: 9, vertical: 5),
+                  padding: const EdgeInsets.symmetric(horizontal: 9, vertical: 6),
                   decoration: BoxDecoration(
-                    color: tier.accentColor.withValues(alpha: 0.18),
+                    color: const Color(0xFF202022),
                     borderRadius: BorderRadius.circular(10),
                     border: Border.all(
-                      color: tier.accentColor.withValues(alpha: 0.45),
+                      color: CupertinoColors.white.withValues(alpha: 0.2),
                     ),
                   ),
                   child: Row(
                     children: [
-                      Icon(
+                      const Icon(
                         CupertinoIcons.cube_box_fill,
-                        color: tier.accentColor,
+                        color: EclipseTheme.white,
                         size: 13,
                       ),
                       const SizedBox(width: 4),
                       Text(
                         'Lv ${contact.houseLevel}',
-                        style: TextStyle(
-                          color: tier.accentColor,
+                        style: const TextStyle(
+                          color: EclipseTheme.white,
                           fontSize: 11,
                           fontWeight: FontWeight.bold,
                         ),

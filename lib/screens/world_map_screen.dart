@@ -2,6 +2,7 @@ import 'dart:math' as math;
 import 'package:flutter/cupertino.dart';
 import '../data/contact.dart';
 import '../data/game_state.dart';
+import '../theme/eclipse_theme.dart';
 import 'house_detail_sheet.dart';
 import 'location_permission_dialog.dart';
 
@@ -23,18 +24,23 @@ class _WorldMapScreenState extends State<WorldMapScreen> {
         final state = GameState.instance;
 
         return CupertinoPageScaffold(
-          backgroundColor: const Color(0xFF0F172A),
+          backgroundColor: EclipseTheme.background,
           navigationBar: CupertinoNavigationBar(
-            backgroundColor: const Color(0xFF1E293B).withValues(alpha: 0.85),
+            backgroundColor: const Color(0xFF0D0D0E).withValues(alpha: 0.95),
+            border: Border(
+              bottom: BorderSide(
+                color: CupertinoColors.white.withValues(alpha: 0.08),
+              ),
+            ),
             middle: const Text(
               'Neighborhood Realm Map',
-              style: TextStyle(color: CupertinoColors.white),
+              style: TextStyle(color: CupertinoColors.white, fontWeight: FontWeight.bold),
             ),
             trailing: CupertinoButton(
               padding: EdgeInsets.zero,
               child: const Icon(
                 CupertinoIcons.location_solid,
-                color: Color(0xFFF59E0B),
+                color: CupertinoColors.white,
               ),
               onPressed: () => LocationPermissionDialog.show(context),
             ),
@@ -57,17 +63,17 @@ class _WorldMapScreenState extends State<WorldMapScreen> {
                   child: Container(
                     padding: const EdgeInsets.symmetric(horizontal: 14, vertical: 8),
                     decoration: BoxDecoration(
-                      color: const Color(0xFF1E293B).withValues(alpha: 0.9),
+                      color: const Color(0xFF141416),
                       borderRadius: BorderRadius.circular(14),
                       border: Border.all(
-                        color: CupertinoColors.white.withValues(alpha: 0.15),
+                        color: CupertinoColors.white.withValues(alpha: 0.12),
                       ),
                     ),
                     child: Row(
                       children: [
                         const Icon(
                           CupertinoIcons.house_alt_fill,
-                          color: Color(0xFFF59E0B),
+                          color: CupertinoColors.white,
                           size: 16,
                         ),
                         const SizedBox(width: 8),
@@ -86,7 +92,7 @@ class _WorldMapScreenState extends State<WorldMapScreen> {
                           child: const Text(
                             'Relocate',
                             style: TextStyle(
-                              color: Color(0xFF38BDF8),
+                              color: Color(0xFFA1A1A6),
                               fontSize: 12,
                               fontWeight: FontWeight.bold,
                             ),
@@ -153,11 +159,14 @@ class _WorldMapScreenState extends State<WorldMapScreen> {
           Container(
             padding: const EdgeInsets.symmetric(horizontal: 8, vertical: 4),
             decoration: BoxDecoration(
-              color: const Color(0xFFF59E0B),
+              color: const Color(0xFF27272A),
               borderRadius: BorderRadius.circular(10),
+              border: Border.all(
+                color: CupertinoColors.white.withValues(alpha: 0.3),
+              ),
               boxShadow: [
                 BoxShadow(
-                  color: const Color(0xFFF59E0B).withValues(alpha: 0.5),
+                  color: CupertinoColors.white.withValues(alpha: 0.15),
                   blurRadius: 10,
                 ),
               ],
@@ -165,7 +174,7 @@ class _WorldMapScreenState extends State<WorldMapScreen> {
             child: Text(
               'YOU • Lv ${state.playerHouseLevel}',
               style: const TextStyle(
-                color: Color(0xFF451A03),
+                color: CupertinoColors.white,
                 fontSize: 10,
                 fontWeight: FontWeight.bold,
               ),
@@ -174,7 +183,7 @@ class _WorldMapScreenState extends State<WorldMapScreen> {
           const SizedBox(height: 3),
           const Icon(
             CupertinoIcons.location_solid,
-            color: Color(0xFFF59E0B),
+            color: CupertinoColors.white,
             size: 32,
           ),
         ],
@@ -220,25 +229,25 @@ class _WorldMapScreenState extends State<WorldMapScreen> {
             Container(
               padding: const EdgeInsets.symmetric(horizontal: 6, vertical: 2),
               decoration: BoxDecoration(
-                color: const Color(0xFF1E293B),
+                color: const Color(0xFF18181B),
                 borderRadius: BorderRadius.circular(8),
                 border: Border.all(
-                  color: c.houseTier.accentColor.withValues(alpha: 0.6),
+                  color: CupertinoColors.white.withValues(alpha: 0.2),
                 ),
               ),
               child: Text(
                 '${c.firstName} • Lv ${c.houseLevel}',
-                style: TextStyle(
-                  color: c.houseTier.accentColor,
+                style: const TextStyle(
+                  color: CupertinoColors.white,
                   fontSize: 9,
                   fontWeight: FontWeight.bold,
                 ),
               ),
             ),
             const SizedBox(height: 2),
-            Icon(
+            const Icon(
               CupertinoIcons.house_fill,
-              color: c.houseTier.accentColor,
+              color: CupertinoColors.white,
               size: 20,
             ),
           ],
@@ -251,9 +260,9 @@ class _WorldMapScreenState extends State<WorldMapScreen> {
     return Container(
       padding: const EdgeInsets.all(12),
       decoration: BoxDecoration(
-        color: const Color(0xFF1E293B),
+        color: const Color(0xFF141416),
         borderRadius: BorderRadius.circular(16),
-        border: Border.all(color: c.houseTier.accentColor),
+        border: Border.all(color: CupertinoColors.white.withValues(alpha: 0.15)),
       ),
       child: Row(
         children: [
@@ -263,6 +272,9 @@ class _WorldMapScreenState extends State<WorldMapScreen> {
             decoration: BoxDecoration(
               color: c.avatarColor,
               shape: BoxShape.circle,
+              border: Border.all(
+                color: CupertinoColors.white.withValues(alpha: 0.2),
+              ),
             ),
             child: Center(
               child: Text(
@@ -290,20 +302,21 @@ class _WorldMapScreenState extends State<WorldMapScreen> {
                 ),
                 Text(
                   '${c.houseTier.title} • ${c.locationName}',
-                  style: TextStyle(
-                    color: c.houseTier.accentColor,
+                  style: const TextStyle(
+                    color: Color(0xFFA1A1A6),
                     fontSize: 11,
                   ),
                 ),
               ],
             ),
           ),
-          CupertinoButton.filled(
+          CupertinoButton(
+            color: const Color(0xFF27272A),
             padding: const EdgeInsets.symmetric(horizontal: 12, vertical: 8),
             onPressed: () {
               HouseDetailSheet.show(context, contact: c);
             },
-            child: const Text('View Estate', style: TextStyle(fontSize: 12)),
+            child: const Text('View Estate', style: TextStyle(fontSize: 12, color: CupertinoColors.white)),
           ),
         ],
       ),
@@ -317,7 +330,7 @@ class _MapGridPainter extends CustomPainter {
   @override
   void paint(Canvas canvas, Size size) {
     final linePaint = Paint()
-      ..color = const Color(0xFF334155).withValues(alpha: 0.35)
+      ..color = CupertinoColors.white.withValues(alpha: 0.05)
       ..strokeWidth = 1.0;
 
     const step = 44.0;
@@ -329,7 +342,7 @@ class _MapGridPainter extends CustomPainter {
     }
 
     final radarPaint = Paint()
-      ..color = const Color(0xFF0284C7).withValues(alpha: 0.12)
+      ..color = CupertinoColors.white.withValues(alpha: 0.06)
       ..style = PaintingStyle.stroke
       ..strokeWidth = 1.5;
 

@@ -2,6 +2,7 @@ import 'dart:async';
 import 'package:flutter/cupertino.dart';
 import '../data/contact.dart';
 import '../data/game_state.dart';
+import '../theme/eclipse_theme.dart';
 
 class CallScreen extends StatefulWidget {
   const CallScreen({super.key, required this.contact});
@@ -72,22 +73,25 @@ class _CallScreenState extends State<CallScreen>
             Container(
               padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 10),
               decoration: BoxDecoration(
-                color: const Color(0xFF10B981).withValues(alpha: 0.15),
+                color: const Color(0xFF1C1C1E),
                 borderRadius: BorderRadius.circular(12),
+                border: Border.all(
+                  color: CupertinoColors.white.withValues(alpha: 0.2),
+                ),
               ),
               child: Row(
                 mainAxisSize: MainAxisSize.min,
                 children: [
                   const Icon(
                     CupertinoIcons.phone_fill,
-                    color: Color(0xFF10B981),
+                    color: CupertinoColors.white,
                     size: 20,
                   ),
                   const SizedBox(width: 8),
                   Text(
                     '+$_earnedCP Call Points Earned!',
                     style: const TextStyle(
-                      color: Color(0xFF10B981),
+                      color: CupertinoColors.white,
                       fontSize: 16,
                       fontWeight: FontWeight.bold,
                     ),
@@ -128,7 +132,7 @@ class _CallScreenState extends State<CallScreen>
   @override
   Widget build(BuildContext context) {
     return CupertinoPageScaffold(
-      backgroundColor: const Color(0xFF0F172A),
+      backgroundColor: EclipseTheme.background,
       navigationBar: CupertinoNavigationBar(
         backgroundColor: CupertinoColors.transparent,
         border: null,
@@ -165,10 +169,10 @@ class _CallScreenState extends State<CallScreen>
             Container(
               padding: const EdgeInsets.symmetric(horizontal: 14, vertical: 6),
               decoration: BoxDecoration(
-                color: const Color(0xFF10B981).withValues(alpha: 0.2),
+                color: const Color(0xFF1C1C1E),
                 borderRadius: BorderRadius.circular(20),
                 border: Border.all(
-                  color: const Color(0xFF10B981).withValues(alpha: 0.5),
+                  color: CupertinoColors.white.withValues(alpha: 0.2),
                 ),
               ),
               child: Row(
@@ -176,14 +180,14 @@ class _CallScreenState extends State<CallScreen>
                 children: [
                   const Icon(
                     CupertinoIcons.bolt_fill,
-                    color: Color(0xFF10B981),
+                    color: CupertinoColors.white,
                     size: 14,
                   ),
                   const SizedBox(width: 6),
                   Text(
                     '+$_earnedCP Call Points (+5/sec)',
                     style: const TextStyle(
-                      color: Color(0xFF10B981),
+                      color: CupertinoColors.white,
                       fontSize: 13,
                       fontWeight: FontWeight.bold,
                     ),
@@ -202,7 +206,7 @@ class _CallScreenState extends State<CallScreen>
                       size: const Size(220, 220),
                       painter: _AudioWaveformPainter(
                         progress: _waveController.value,
-                        color: widget.contact.avatarColor,
+                        color: CupertinoColors.white,
                       ),
                     ),
                     Container(
@@ -211,13 +215,17 @@ class _CallScreenState extends State<CallScreen>
                       decoration: BoxDecoration(
                         color: widget.contact.avatarColor,
                         shape: BoxShape.circle,
+                        border: Border.all(
+                          color: CupertinoColors.white.withValues(alpha: 0.25),
+                          width: 2,
+                        ),
                         boxShadow: [
                           BoxShadow(
-                            color: widget.contact.avatarColor.withValues(
-                              alpha: 0.4,
+                            color: CupertinoColors.white.withValues(
+                              alpha: 0.15,
                             ),
                             blurRadius: 24,
-                            spreadRadius: 4,
+                            spreadRadius: 2,
                           ),
                         ],
                       ),
@@ -239,8 +247,8 @@ class _CallScreenState extends State<CallScreen>
             const SizedBox(height: 20),
             Text(
               '${widget.contact.houseTier.title} • Lv ${widget.contact.houseLevel}',
-              style: TextStyle(
-                color: widget.contact.houseTier.accentColor,
+              style: const TextStyle(
+                color: Color(0xFFA1A1A6),
                 fontSize: 14,
                 fontWeight: FontWeight.w600,
               ),
