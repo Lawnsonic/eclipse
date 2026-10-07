@@ -1,7 +1,7 @@
 import 'package:flutter/cupertino.dart';
 import '../data/contact.dart';
 import '../data/game_state.dart';
-import '../widgets/house_visual_widget.dart';
+import '../widgets/house_3d_viewer.dart';
 import 'call_screen.dart';
 import 'chat_screen.dart';
 import 'location_permission_dialog.dart';
@@ -107,10 +107,10 @@ class HouseDetailSheet extends StatelessWidget {
                 child: ListView(
                   padding: const EdgeInsets.symmetric(horizontal: 20),
                   children: [
-                    HouseVisualWidget(
+                    House3DViewer(
                       tier: tier,
-                      height: 240,
-                      isInteractive: true,
+                      height: 270,
+                      interactive: true,
                     ),
                     const SizedBox(height: 16),
                     Text(

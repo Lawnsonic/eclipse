@@ -1,6 +1,7 @@
 import 'package:flutter/cupertino.dart';
 import '../data/contact.dart';
 import '../data/game_state.dart';
+import '../theme/eclipse_theme.dart';
 
 class ChatMessage {
   ChatMessage({
@@ -33,7 +34,7 @@ class _ChatScreenState extends State<ChatScreen> {
     super.initState();
     _messages.addAll([
       ChatMessage(
-        text: 'Hey! Welcome to ${widget.contact.locationName}. How is your estate doing?',
+        text: 'Hey! Welcome to ${widget.contact.locationName}. How is your 3D estate doing?',
         isMe: false,
         timestamp: DateTime.now().subtract(const Duration(minutes: 15)),
       ),
@@ -76,11 +77,11 @@ class _ChatScreenState extends State<ChatScreen> {
       if (!mounted) return;
       String reply;
       if (text.toLowerCase().contains('solar') || text.toLowerCase().contains('flare')) {
-        reply = 'Thank you for the Solar Flare! My ${widget.contact.houseTier.title} is glowing with extra energy today! ✨';
+        reply = 'Thank you for the Solar Flare! My 3D ${widget.contact.houseTier.title} is glowing with extra solar energy today! ✨';
       } else if (text.toLowerCase().contains('upgrade') || text.toLowerCase().contains('house') || text.toLowerCase().contains('estate')) {
-        reply = 'Upgrading to Level ${widget.contact.houseLevel} took some dedication! Keep tapping the Solar Forge and calling friends to harvest CP!';
+        reply = 'Upgrading to Level ${widget.contact.houseLevel} was awesome! Keep tapping the Solar Forge and calling contacts to harvest Call Points!';
       } else {
-        reply = 'Great to hear from you! Stop by my estate in ${widget.contact.locationName} anytime.';
+        reply = 'Great to hear from you! Stop by my plot in ${widget.contact.locationName} anytime.';
       }
 
       setState(() {
@@ -115,14 +116,20 @@ class _ChatScreenState extends State<ChatScreen> {
   @override
   Widget build(BuildContext context) {
     return CupertinoPageScaffold(
-      backgroundColor: CupertinoColors.systemGroupedBackground,
+      backgroundColor: EclipseTheme.background,
       navigationBar: CupertinoNavigationBar(
+        backgroundColor: const Color(0xFF0F172A).withValues(alpha: 0.9),
+        border: Border(
+          bottom: BorderSide(
+            color: CupertinoColors.white.withValues(alpha: 0.08),
+          ),
+        ),
         middle: Row(
           mainAxisSize: MainAxisSize.min,
           children: [
             Container(
-              width: 28,
-              height: 28,
+              width: 30,
+              height: 30,
               decoration: BoxDecoration(
                 color: widget.contact.avatarColor,
                 shape: BoxShape.circle,
@@ -145,13 +152,18 @@ class _ChatScreenState extends State<ChatScreen> {
               children: [
                 Text(
                   widget.contact.fullName,
-                  style: const TextStyle(fontSize: 14, fontWeight: FontWeight.bold),
+                  style: const TextStyle(
+                    fontSize: 14,
+                    fontWeight: FontWeight.bold,
+                    color: CupertinoColors.white,
+                  ),
                 ),
                 Text(
-                  'Lv ${widget.contact.houseLevel} ${widget.contact.houseTier.title}',
+                  '3D Lv ${widget.contact.houseLevel} ${widget.contact.houseTier.title}',
                   style: TextStyle(
                     fontSize: 10,
                     color: widget.contact.houseTier.accentColor,
+                    fontWeight: FontWeight.w600,
                   ),
                 ),
               ],
@@ -185,24 +197,25 @@ class _ChatScreenState extends State<ChatScreen> {
                       decoration: BoxDecoration(
                         color: msg.isMe
                             ? const Color(0xFF0284C7)
-                            : CupertinoColors.white,
+                            : const Color(0xFF1E293B),
                         borderRadius: BorderRadius.circular(16),
+                        border: Border.all(
+                          color: msg.isMe
+                              ? const Color(0xFF38BDF8).withValues(alpha: 0.4)
+                              : const Color(0xFF334155),
+                        ),
                         boxShadow: [
                           BoxShadow(
-                            color: CupertinoColors.systemGrey.withValues(
-                              alpha: 0.12,
-                            ),
-                            blurRadius: 4,
+                            color: CupertinoColors.black.withValues(alpha: 0.2),
+                            blurRadius: 6,
                             offset: const Offset(0, 2),
                           ),
                         ],
                       ),
                       child: Text(
                         msg.text,
-                        style: TextStyle(
-                          color: msg.isMe
-                              ? CupertinoColors.white
-                              : CupertinoColors.black,
+                        style: const TextStyle(
+                          color: CupertinoColors.white,
                           fontSize: 14,
                         ),
                       ),
@@ -213,7 +226,7 @@ class _ChatScreenState extends State<ChatScreen> {
             ),
             Container(
               padding: const EdgeInsets.symmetric(horizontal: 12, vertical: 6),
-              color: CupertinoColors.white,
+              color: const Color(0xFF0F172A),
               child: SingleChildScrollView(
                 scrollDirection: Axis.horizontal,
                 child: Row(
@@ -229,20 +242,20 @@ class _ChatScreenState extends State<ChatScreen> {
                     ),
                     const SizedBox(width: 8),
                     _QuickActionChip(
-                      label: '📍 Beautiful realm coordinates!',
-                      onTap: () => _sendMessage('Your estate at ${widget.contact.locationName} looks incredible on the map!'),
+                      label: '📍 Beautiful 3D plot coordinates!',
+                      onTap: () => _sendMessage('Your 3D estate at ${widget.contact.locationName} looks incredible on the realm map!'),
                     ),
                   ],
                 ),
               ),
             ),
             Container(
-              padding: const EdgeInsets.symmetric(horizontal: 12, vertical: 8),
+              padding: const EdgeInsets.symmetric(horizontal: 12, vertical: 10),
               decoration: BoxDecoration(
-                color: CupertinoColors.white,
+                color: const Color(0xFF0F172A),
                 border: Border(
                   top: BorderSide(
-                    color: CupertinoColors.separator.withValues(alpha: 0.5),
+                    color: CupertinoColors.white.withValues(alpha: 0.08),
                   ),
                 ),
               ),
@@ -252,13 +265,16 @@ class _ChatScreenState extends State<ChatScreen> {
                     child: CupertinoTextField(
                       controller: _textController,
                       placeholder: 'Message ${widget.contact.firstName}...',
+                      style: const TextStyle(color: CupertinoColors.white),
+                      placeholderStyle: const TextStyle(color: Color(0xFF64748B)),
                       padding: const EdgeInsets.symmetric(
                         horizontal: 14,
                         vertical: 10,
                       ),
                       decoration: BoxDecoration(
-                        color: CupertinoColors.extraLightBackgroundGray,
+                        color: const Color(0xFF1E293B),
                         borderRadius: BorderRadius.circular(20),
+                        border: Border.all(color: const Color(0xFF334155)),
                       ),
                       onSubmitted: (_) => _sendMessage(),
                     ),
@@ -304,16 +320,16 @@ class _QuickActionChip extends StatelessWidget {
       child: Container(
         padding: const EdgeInsets.symmetric(horizontal: 10, vertical: 6),
         decoration: BoxDecoration(
-          color: const Color(0xFF0284C7).withValues(alpha: 0.1),
+          color: const Color(0xFF0284C7).withValues(alpha: 0.15),
           borderRadius: BorderRadius.circular(14),
           border: Border.all(
-            color: const Color(0xFF0284C7).withValues(alpha: 0.3),
+            color: const Color(0xFF0284C7).withValues(alpha: 0.4),
           ),
         ),
         child: Text(
           label,
           style: const TextStyle(
-            color: Color(0xFF0284C7),
+            color: Color(0xFF38BDF8),
             fontSize: 12,
             fontWeight: FontWeight.w600,
           ),

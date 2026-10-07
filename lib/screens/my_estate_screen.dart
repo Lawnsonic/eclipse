@@ -1,6 +1,7 @@
 import 'package:flutter/cupertino.dart';
 import '../data/game_state.dart';
-import '../widgets/house_visual_widget.dart';
+import '../theme/eclipse_theme.dart';
+import '../widgets/house_3d_viewer.dart';
 import 'location_permission_dialog.dart';
 
 class MyEstateScreen extends StatefulWidget {
@@ -63,29 +64,44 @@ class _MyEstateScreenState extends State<MyEstateScreen>
         final next = state.nextTier;
 
         return CupertinoPageScaffold(
-          backgroundColor: CupertinoColors.systemGroupedBackground,
+          backgroundColor: EclipseTheme.background,
           navigationBar: CupertinoNavigationBar(
-            middle: const Text('My Estate & Solar Forge'),
+            backgroundColor: const Color(0xFF0F172A).withValues(alpha: 0.9),
+            border: Border(
+              bottom: BorderSide(
+                color: CupertinoColors.white.withValues(alpha: 0.08),
+              ),
+            ),
+            middle: const Text(
+              'My 3D Estate & Solar Forge',
+              style: TextStyle(
+                color: CupertinoColors.white,
+                fontWeight: FontWeight.bold,
+              ),
+            ),
             trailing: CupertinoButton(
               padding: EdgeInsets.zero,
-              child: const Icon(CupertinoIcons.location_circle_fill),
+              child: const Icon(
+                CupertinoIcons.location_circle_fill,
+                color: Color(0xFFF59E0B),
+              ),
               onPressed: () => LocationPermissionDialog.show(context),
             ),
           ),
           child: SafeArea(
             child: ListView(
-              padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 12),
+              padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 14),
               children: [
                 _buildHeaderStats(state),
-                const SizedBox(height: 14),
-                HouseVisualWidget(tier: current, height: 230),
+                const SizedBox(height: 16),
+                House3DViewer(tier: current, height: 280),
                 const SizedBox(height: 16),
                 _buildSolarForgeSection(state),
                 const SizedBox(height: 16),
                 _buildUpgradeCard(context, state, next),
                 const SizedBox(height: 16),
                 _buildActivityLog(state),
-                const SizedBox(height: 24),
+                const SizedBox(height: 30),
               ],
             ),
           ),
@@ -97,17 +113,7 @@ class _MyEstateScreenState extends State<MyEstateScreen>
   Widget _buildHeaderStats(GameState state) {
     return Container(
       padding: const EdgeInsets.all(14),
-      decoration: BoxDecoration(
-        color: CupertinoColors.white,
-        borderRadius: BorderRadius.circular(18),
-        boxShadow: [
-          BoxShadow(
-            color: CupertinoColors.systemGrey.withValues(alpha: 0.1),
-            blurRadius: 10,
-            offset: const Offset(0, 3),
-          ),
-        ],
-      ),
+      decoration: EclipseTheme.glassCardDecoration(),
       child: Row(
         children: [
           Expanded(
@@ -116,7 +122,7 @@ class _MyEstateScreenState extends State<MyEstateScreen>
                 Container(
                   padding: const EdgeInsets.all(8),
                   decoration: BoxDecoration(
-                    color: const Color(0xFFF59E0B).withValues(alpha: 0.15),
+                    color: const Color(0xFFF59E0B).withValues(alpha: 0.2),
                     shape: BoxShape.circle,
                   ),
                   child: const Icon(
@@ -125,22 +131,23 @@ class _MyEstateScreenState extends State<MyEstateScreen>
                     size: 20,
                   ),
                 ),
-                const SizedBox(width: 8),
+                const SizedBox(width: 10),
                 Column(
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
-                    const Text(
+                    Text(
                       'Eclipse Points',
                       style: TextStyle(
                         fontSize: 11,
-                        color: CupertinoColors.secondaryLabel,
+                        color: EclipseTheme.textMuted,
                       ),
                     ),
                     Text(
                       '${state.eclipsePoints} EP',
                       style: const TextStyle(
-                        fontSize: 16,
+                        fontSize: 17,
                         fontWeight: FontWeight.bold,
+                        color: Color(0xFFF59E0B),
                       ),
                     ),
                   ],
@@ -148,7 +155,11 @@ class _MyEstateScreenState extends State<MyEstateScreen>
               ],
             ),
           ),
-          Container(width: 1, height: 32, color: CupertinoColors.separator),
+          Container(
+            width: 1,
+            height: 34,
+            color: CupertinoColors.white.withValues(alpha: 0.1),
+          ),
           Expanded(
             child: Row(
               mainAxisAlignment: MainAxisAlignment.end,
@@ -156,7 +167,7 @@ class _MyEstateScreenState extends State<MyEstateScreen>
                 Container(
                   padding: const EdgeInsets.all(8),
                   decoration: BoxDecoration(
-                    color: const Color(0xFF10B981).withValues(alpha: 0.15),
+                    color: const Color(0xFF10B981).withValues(alpha: 0.2),
                     shape: BoxShape.circle,
                   ),
                   child: const Icon(
@@ -165,22 +176,23 @@ class _MyEstateScreenState extends State<MyEstateScreen>
                     size: 20,
                   ),
                 ),
-                const SizedBox(width: 8),
+                const SizedBox(width: 10),
                 Column(
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
-                    const Text(
+                    Text(
                       'Call Points',
                       style: TextStyle(
                         fontSize: 11,
-                        color: CupertinoColors.secondaryLabel,
+                        color: EclipseTheme.textMuted,
                       ),
                     ),
                     Text(
                       '${state.callPoints} CP',
                       style: const TextStyle(
-                        fontSize: 16,
+                        fontSize: 17,
                         fontWeight: FontWeight.bold,
+                        color: Color(0xFF10B981),
                       ),
                     ),
                   ],
@@ -195,18 +207,22 @@ class _MyEstateScreenState extends State<MyEstateScreen>
 
   Widget _buildSolarForgeSection(GameState state) {
     return Container(
-      padding: const EdgeInsets.all(16),
+      padding: const EdgeInsets.all(18),
       decoration: BoxDecoration(
         gradient: const LinearGradient(
           begin: Alignment.topLeft,
           end: Alignment.bottomRight,
-          colors: [Color(0xFF1E1B4B), Color(0xFF431407)],
+          colors: [Color(0xFF1E1035), Color(0xFF451A03)],
         ),
         borderRadius: BorderRadius.circular(20),
+        border: Border.all(
+          color: const Color(0xFFF59E0B).withValues(alpha: 0.35),
+          width: 1.2,
+        ),
         boxShadow: [
           BoxShadow(
-            color: const Color(0xFFF59E0B).withValues(alpha: 0.25),
-            blurRadius: 16,
+            color: const Color(0xFFF59E0B).withValues(alpha: 0.2),
+            blurRadius: 20,
             offset: const Offset(0, 6),
           ),
         ],
@@ -223,24 +239,24 @@ class _MyEstateScreenState extends State<MyEstateScreen>
                     color: Color(0xFFF59E0B),
                     size: 18,
                   ),
-                  SizedBox(width: 6),
+                  SizedBox(width: 8),
                   Text(
-                    'SOLAR FORGE TAP MINI-GAME',
+                    'SOLAR FORGE 3D TAP',
                     style: TextStyle(
                       color: CupertinoColors.white,
                       fontSize: 12,
                       fontWeight: FontWeight.bold,
-                      letterSpacing: 0.5,
+                      letterSpacing: 0.6,
                     ),
                   ),
                 ],
               ),
               Container(
-                padding: const EdgeInsets.symmetric(horizontal: 8, vertical: 4),
+                padding: const EdgeInsets.symmetric(horizontal: 10, vertical: 4),
                 decoration: BoxDecoration(
                   color: state.comboMultiplier > 1
                       ? const Color(0xFFF43F5E)
-                      : CupertinoColors.white.withValues(alpha: 0.2),
+                      : CupertinoColors.white.withValues(alpha: 0.15),
                   borderRadius: BorderRadius.circular(10),
                 ),
                 child: Text(
@@ -276,8 +292,8 @@ class _MyEstateScreenState extends State<MyEstateScreen>
                     return Transform.scale(
                       scale: scale,
                       child: Container(
-                        width: 104,
-                        height: 104,
+                        width: 110,
+                        height: 110,
                         decoration: BoxDecoration(
                           shape: BoxShape.circle,
                           boxShadow: [
@@ -286,7 +302,7 @@ class _MyEstateScreenState extends State<MyEstateScreen>
                                       ? const Color(0xFFF43F5E)
                                       : const Color(0xFFF59E0B))
                                   .withValues(alpha: 0.6),
-                              blurRadius: 30,
+                              blurRadius: 36,
                               spreadRadius: 8,
                             ),
                           ],
@@ -296,8 +312,8 @@ class _MyEstateScreenState extends State<MyEstateScreen>
                   },
                 ),
                 Container(
-                  width: 90,
-                  height: 90,
+                  width: 96,
+                  height: 96,
                   decoration: const BoxDecoration(
                     shape: BoxShape.circle,
                     gradient: RadialGradient(
@@ -312,7 +328,7 @@ class _MyEstateScreenState extends State<MyEstateScreen>
                     child: Icon(
                       CupertinoIcons.sun_max_fill,
                       color: Color(0xFF451A03),
-                      size: 44,
+                      size: 46,
                     ),
                   ),
                 ),
@@ -325,14 +341,14 @@ class _MyEstateScreenState extends State<MyEstateScreen>
                       style: TextStyle(
                         color: p.color,
                         fontWeight: FontWeight.bold,
-                        fontSize: 16,
+                        fontSize: 17,
                       ),
                     ),
                   ),
               ],
             ),
           ),
-          const SizedBox(height: 12),
+          const SizedBox(height: 10),
         ],
       ),
     );
@@ -351,18 +367,8 @@ class _MyEstateScreenState extends State<MyEstateScreen>
     final cpProgress = (state.callPoints / next.requiredCP).clamp(0.0, 1.0);
 
     return Container(
-      padding: const EdgeInsets.all(16),
-      decoration: BoxDecoration(
-        color: CupertinoColors.white,
-        borderRadius: BorderRadius.circular(20),
-        boxShadow: [
-          BoxShadow(
-            color: CupertinoColors.systemGrey.withValues(alpha: 0.1),
-            blurRadius: 10,
-            offset: const Offset(0, 3),
-          ),
-        ],
-      ),
+      padding: const EdgeInsets.all(18),
+      decoration: EclipseTheme.glassCardDecoration(borderColor: next.accentColor.withValues(alpha: 0.35)),
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
@@ -375,15 +381,22 @@ class _MyEstateScreenState extends State<MyEstateScreen>
                   color: next.accentColor,
                   fontSize: 12,
                   fontWeight: FontWeight.bold,
-                  letterSpacing: 0.5,
+                  letterSpacing: 0.6,
                 ),
               ),
-              Text(
-                '+${next.dailyIncomeEP} EP/day',
-                style: TextStyle(
-                  color: next.accentColor,
-                  fontWeight: FontWeight.bold,
-                  fontSize: 12,
+              Container(
+                padding: const EdgeInsets.symmetric(horizontal: 8, vertical: 3),
+                decoration: BoxDecoration(
+                  color: next.accentColor.withValues(alpha: 0.2),
+                  borderRadius: BorderRadius.circular(8),
+                ),
+                child: Text(
+                  '+${next.dailyIncomeEP} EP/day',
+                  style: TextStyle(
+                    color: next.accentColor,
+                    fontWeight: FontWeight.bold,
+                    fontSize: 11,
+                  ),
                 ),
               ),
             ],
@@ -391,16 +404,16 @@ class _MyEstateScreenState extends State<MyEstateScreen>
           const SizedBox(height: 10),
           Text(
             next.description,
-            style: const TextStyle(
+            style: TextStyle(
               fontSize: 13,
-              color: CupertinoColors.secondaryLabel,
+              color: EclipseTheme.textSecondary,
             ),
           ),
-          const SizedBox(height: 14),
-          _buildProgressBar('Eclipse Points', '${state.eclipsePoints} / ${next.baseCostEP} EP', epProgress, const Color(0xFFF59E0B)),
-          const SizedBox(height: 10),
-          _buildProgressBar('Call Points', '${state.callPoints} / ${next.requiredCP} CP', cpProgress, const Color(0xFF10B981)),
           const SizedBox(height: 16),
+          _buildProgressBar('Eclipse Points', '${state.eclipsePoints} / ${next.baseCostEP} EP', epProgress, const Color(0xFFF59E0B)),
+          const SizedBox(height: 12),
+          _buildProgressBar('Call Points', '${state.callPoints} / ${next.requiredCP} CP', cpProgress, const Color(0xFF10B981)),
+          const SizedBox(height: 18),
           SizedBox(
             width: double.infinity,
             child: CupertinoButton.filled(
@@ -411,7 +424,7 @@ class _MyEstateScreenState extends State<MyEstateScreen>
                         showCupertinoDialog<void>(
                           context: context,
                           builder: (ctx) => CupertinoAlertDialog(
-                            title: const Text('🎉 Estate Upgraded!'),
+                            title: const Text('🎉 3D Estate Upgraded!'),
                             content: Text(
                               'Congratulations! Your estate is now Level ${next.level} ${next.title}!\nUnlocked: ${next.perkDescription}',
                             ),
@@ -428,7 +441,7 @@ class _MyEstateScreenState extends State<MyEstateScreen>
                   : null,
               child: Text(
                 canUpgrade
-                    ? 'Upgrade Estate Now'
+                    ? 'Upgrade 3D Estate Now'
                     : 'Need More Points (Call or Forge)',
               ),
             ),
@@ -445,11 +458,11 @@ class _MyEstateScreenState extends State<MyEstateScreen>
         Row(
           mainAxisAlignment: MainAxisAlignment.spaceBetween,
           children: [
-            Text(title, style: const TextStyle(fontSize: 12, fontWeight: FontWeight.w600)),
+            Text(title, style: const TextStyle(fontSize: 12, fontWeight: FontWeight.w600, color: CupertinoColors.white)),
             Text(ratio, style: TextStyle(fontSize: 12, fontWeight: FontWeight.bold, color: color)),
           ],
         ),
-        const SizedBox(height: 4),
+        const SizedBox(height: 5),
         ClipRRect(
           borderRadius: BorderRadius.circular(4),
           child: Container(
@@ -468,31 +481,21 @@ class _MyEstateScreenState extends State<MyEstateScreen>
 
   Widget _buildActivityLog(GameState state) {
     return Container(
-      padding: const EdgeInsets.all(16),
-      decoration: BoxDecoration(
-        color: CupertinoColors.white,
-        borderRadius: BorderRadius.circular(20),
-        boxShadow: [
-          BoxShadow(
-            color: CupertinoColors.systemGrey.withValues(alpha: 0.1),
-            blurRadius: 10,
-            offset: const Offset(0, 3),
-          ),
-        ],
-      ),
+      padding: const EdgeInsets.all(18),
+      decoration: EclipseTheme.glassCardDecoration(),
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
-          const Text(
+          Text(
             'RECENT ACTIVITIES & REWARDS',
             style: TextStyle(
-              fontSize: 12,
+              fontSize: 11,
               fontWeight: FontWeight.bold,
-              color: CupertinoColors.secondaryLabel,
-              letterSpacing: 0.5,
+              color: EclipseTheme.textMuted,
+              letterSpacing: 0.8,
             ),
           ),
-          const SizedBox(height: 10),
+          const SizedBox(height: 12),
           for (final a in state.activities.take(5))
             Padding(
               padding: const EdgeInsets.symmetric(vertical: 6),
@@ -501,10 +504,10 @@ class _MyEstateScreenState extends State<MyEstateScreen>
                   Container(
                     padding: const EdgeInsets.all(6),
                     decoration: BoxDecoration(
-                      color: const Color(0xFF0284C7).withValues(alpha: 0.1),
+                      color: const Color(0xFF0284C7).withValues(alpha: 0.2),
                       shape: BoxShape.circle,
                     ),
-                    child: Icon(a.icon, size: 14, color: const Color(0xFF0284C7)),
+                    child: Icon(a.icon, size: 14, color: const Color(0xFF38BDF8)),
                   ),
                   const SizedBox(width: 10),
                   Expanded(
@@ -516,13 +519,14 @@ class _MyEstateScreenState extends State<MyEstateScreen>
                           style: const TextStyle(
                             fontSize: 13,
                             fontWeight: FontWeight.w600,
+                            color: CupertinoColors.white,
                           ),
                         ),
                         Text(
                           a.subtitle,
-                          style: const TextStyle(
+                          style: TextStyle(
                             fontSize: 11,
-                            color: CupertinoColors.secondaryLabel,
+                            color: EclipseTheme.textMuted,
                           ),
                         ),
                       ],

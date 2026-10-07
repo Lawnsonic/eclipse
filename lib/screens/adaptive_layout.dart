@@ -1,9 +1,10 @@
 import 'package:flutter/cupertino.dart';
 
+import '../theme/eclipse_theme.dart';
 import 'contact_groups.dart';
 import 'contacts.dart';
+import 'map_region_screen.dart';
 import 'my_estate_screen.dart';
-import 'world_map_screen.dart';
 
 const largeScreenMinWidth = 600;
 
@@ -36,24 +37,31 @@ class _AdaptiveLayoutState extends State<AdaptiveLayout> {
           return CupertinoTabScaffold(
             tabBar: CupertinoTabBar(
               currentIndex: _currentTabIndex,
+              backgroundColor: const Color(0xFF0F172A).withValues(alpha: 0.95),
+              activeColor: const Color(0xFFF59E0B),
+              inactiveColor: const Color(0xFF64748B),
+              border: Border(
+                top: BorderSide(
+                  color: CupertinoColors.white.withValues(alpha: 0.08),
+                ),
+              ),
               onTap: (index) {
                 setState(() {
                   _currentTabIndex = index;
                 });
               },
-              activeColor: const Color(0xFFF59E0B),
               items: const [
                 BottomNavigationBarItem(
                   icon: Icon(CupertinoIcons.person_2_fill),
                   label: 'Contacts',
                 ),
                 BottomNavigationBarItem(
-                  icon: Icon(CupertinoIcons.house_alt_fill),
-                  label: 'My Estate',
+                  icon: Icon(CupertinoIcons.map_fill),
+                  label: '3D Realm Map',
                 ),
                 BottomNavigationBarItem(
-                  icon: Icon(CupertinoIcons.map_fill),
-                  label: 'Realm Map',
+                  icon: Icon(CupertinoIcons.cube_box_fill),
+                  label: 'My 3D Estate',
                 ),
               ],
             ),
@@ -62,9 +70,9 @@ class _AdaptiveLayoutState extends State<AdaptiveLayout> {
                 case 0:
                   return const ContactGroupsPage();
                 case 1:
-                  return const MyEstateScreen();
+                  return const MapRegionScreen();
                 case 2:
-                  return const WorldMapScreen();
+                  return const MyEstateScreen();
                 default:
                   return const ContactGroupsPage();
               }
@@ -77,18 +85,21 @@ class _AdaptiveLayoutState extends State<AdaptiveLayout> {
 
   Widget _buildLargeScreenLayout() {
     return CupertinoPageScaffold(
-      backgroundColor: CupertinoColors.extraLightBackgroundGray,
+      backgroundColor: EclipseTheme.background,
       child: SafeArea(
         child: Row(
           children: [
             SizedBox(
-              width: 320,
+              width: 340,
               child: ContactGroupsSidebar(
                 selectedListId: selectedListId,
                 onListSelected: _onContactListSelected,
               ),
             ),
-            Container(width: 1, color: CupertinoColors.separator),
+            Container(
+              width: 1,
+              color: CupertinoColors.white.withValues(alpha: 0.08),
+            ),
             Expanded(child: ContactListDetail(listId: selectedListId)),
           ],
         ),
